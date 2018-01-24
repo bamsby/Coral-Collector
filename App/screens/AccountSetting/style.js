@@ -1,11 +1,11 @@
-import {StyleSheet, Dimensions} from 'react-native'
+import {StyleSheet, Dimensions} from 'react-native';
 
 export default StyleSheet.create({
   container: {
     flex: 1,
 
   },
-  bgImage:{
+  bgImage: {
     height: null,
     width: null,
     flex: 1
@@ -15,7 +15,7 @@ export default StyleSheet.create({
     paddingHorizontal: 53,
     paddingTop: 30
   },
-  gothamLight:{
+  gothamLight: {
     // fontFamily: 'GothamRoundedLight'
   },
   title: {
@@ -44,13 +44,13 @@ export default StyleSheet.create({
     marginBottom: 9
   },
   form: {
-    marginTop:15,
+    marginTop: 15,
     marginBottom: 24,
   },
   btnGrp: {
     marginTop: 3,
   },
-  orange:{
+  orange: {
     backgroundColor: '#ee8c3c'
   },
 
@@ -59,10 +59,10 @@ export default StyleSheet.create({
     color: '#fff',
     fontFamily: 'Oswald-Regular'
   },
-  btnTouchable:{
+  btnTouchable: {
     alignItems: 'center',
     // paddingVertical: 14,
-    marginBottom:8,
+    marginBottom: 8,
     height: 41,
     justifyContent: 'center'
   },
@@ -82,4 +82,4 @@ export default StyleSheet.create({
     textAlign: 'center',
     marginBottom: 11
   }
-})
+});

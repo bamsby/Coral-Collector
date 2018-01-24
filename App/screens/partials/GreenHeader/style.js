@@ -1,7 +1,7 @@
-import {StyleSheet, Dimensions} from 'react-native'
+import { StyleSheet, Dimensions } from 'react-native';
 
 export default StyleSheet.create({
-  header:{
+  header: {
     backgroundColor: '#3dbb69',
     paddingTop: 16,
     paddingBottom: 12,
@@ -31,6 +31,5 @@ export default StyleSheet.create({
     marginTop: 12,
     textAlign: 'center',
     fontFamily: 'Oswald-Regular'
-  },
-
-})
+  }
+});

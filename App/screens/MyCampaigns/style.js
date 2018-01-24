@@ -1,4 +1,4 @@
-import {StyleSheet, Dimensions} from 'react-native'
+import { StyleSheet, Dimensions } from 'react-native';
 
 export default StyleSheet.create({
   container: {
@@ -54,10 +54,10 @@ export default StyleSheet.create({
   li: {
     flex: 1,
     flexDirection: 'row',
-    justifyContent:'center',
+    justifyContent: 'center',
     alignItems: 'center',
   },
-  p:{
+  p: {
     // fontSize: 12.5,
     fontSize: 14,
     fontFamily: 'Oswald-Regular'
@@ -72,7 +72,7 @@ export default StyleSheet.create({
   orange: {
     color: '#ee8c3c'
   },
-  red:{
+  red: {
     color: '#eb3a46'
   },
   green: {
@@ -91,4 +91,4 @@ export default StyleSheet.create({
     backgroundColor: 'transparent',
     left: 175,
   }
-})
+});

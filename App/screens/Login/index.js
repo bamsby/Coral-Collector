@@ -15,30 +15,30 @@ import {
 } from 'react-native';
 import Touchable from 'react-native-platform-touchable';
 import { FontAwesome } from '@expo/vector-icons';
-import { Actions } from 'react-native-router-flux'
+import { Actions } from 'react-native-router-flux';
 
-import styles from './style'
+import styles from './style';
 
 export default class LoginScreen extends Component {
-  constructor(props){
+  constructor(props) {
     super(props);
     this.state = {
       uname: 'Username / email',
       pswd: 'Password'
-    }
+    };
   }
   render() {
     return (
       <View style={styles.container}>
-        <Image source={require('../../../assets/images/bg.png')} style={[styles.bgImage]}/>
+        <Image source={require('../../../assets/images/bg.png')} style={[styles.bgImage]} />
         <ScrollView style={styles.overlayContainer}>
-          <Image source={require('../../../assets/images/logo.png')} style={styles.logo}/>
+          <Image source={require('../../../assets/images/logo.png')} style={styles.logo} />
           <Text style={[styles.gothamLight, styles.title]}>CORAL</Text>
           <Text style={[styles.subText, styles.gothamLight]}>Community Recycling Made Simple</Text>
           <View style={[styles.form]}>
             <View style={[styles.inputField]}>
               <TextInput
-                onChangeText={(text) => this.setState({uname:text})}
+                onChangeText={(text) => this.setState({ uname: text })}
                 value={this.state.uname}
                 style={[styles.inputStyle]}
               />
@@ -46,7 +46,7 @@ export default class LoginScreen extends Component {
 
             <View style={[styles.inputField]}>
               <TextInput
-                onChangeText={(text) => this.setState({pswd:text})}
+                onChangeText={(text) => this.setState({ pswd: text })}
                 value={this.state.pswd}
                 style={[styles.inputStyle]}
               />
@@ -56,7 +56,7 @@ export default class LoginScreen extends Component {
               <Touchable style={[styles.orange, styles.btnTouchable]} onPress={() => Actions.recyclingdrivebacker()}>
                 <Text style={styles.btnText}>SIGN IN</Text>
               </Touchable>
-              <Touchable style={[styles.red, styles.btnTouchable ]} onPress={() => Actions.signup()}>
+              <Touchable style={[styles.red, styles.btnTouchable]} onPress={() => Actions.signup()}>
                 <Text style={styles.btnText}>SIGN UP</Text>
               </Touchable>
             </View>
@@ -65,7 +65,7 @@ export default class LoginScreen extends Component {
               <Touchable style={[styles.fb, styles.socialBtnTouchable]}>
                 <FontAwesome name="facebook" style={styles.btnText} />
               </Touchable>
-              <Touchable style={[styles.google, styles.socialBtnTouchable ]}>
+              <Touchable style={[styles.google, styles.socialBtnTouchable]}>
                 <FontAwesome name="google-plus" style={styles.btnText} />
               </Touchable>
             </View>
@@ -74,15 +74,13 @@ export default class LoginScreen extends Component {
               <Text style={[styles.forgotPswdLink]}>Forgot your password?</Text>
             </Touchable>
 
-            <Touchable style={[styles.greenBtn, styles.btnTouchable, {marginTop: 13}]} onPress={() => Actions.champaignstepone()}>
+            <Touchable style={[styles.greenBtn, styles.btnTouchable, { marginTop: 13 }]} onPress={() => Actions.champaignstepone()}>
               <Text style={[styles.btnText]}>BROWSE CAMPAIGNS</Text>
             </Touchable>
-            <Text style={{marginTop: 30, color:'red', textAlign: 'center'}} onPress={() => Actions.mycampaign()}>For test: Open My campaign</Text>
+            <Text style={{ marginTop: 30, color: 'red', textAlign: 'center' }} onPress={() => Actions.mycampaign()}>For test: Open My campaign</Text>
           </View>
         </ScrollView>
       </View>
     );
   }
 }
-
-

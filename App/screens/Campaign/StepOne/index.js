@@ -4,7 +4,7 @@
  * @flow
  */
 
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import {
   StyleSheet,
   Text,
@@ -15,11 +15,11 @@ import {
 } from 'react-native';
 import Touchable from 'react-native-platform-touchable';
 import { FontAwesome } from '@expo/vector-icons';
-import { Actions } from 'react-native-router-flux'
-import {Select} from 'teaset'
+import { Actions } from 'react-native-router-flux';
+import { Select } from 'teaset';
 
-import styles from './style'
-import GreenMenuHeader from '../../partials/GreenHeader/index'
+import styles from './style';
+import GreenMenuHeader from '../../partials/GreenHeader/index';
 
 export default class CampaignStepOneScreen extends Component {
   constructor(props) {
@@ -45,7 +45,7 @@ export default class CampaignStepOneScreen extends Component {
   render() {
     return (
       <ScrollView style={styles.container}>
-        <GreenMenuHeader menuTitle="CREATE YOUR CAMPAIGN"/>
+        <GreenMenuHeader menuTitle="CREATE YOUR CAMPAIGN" />
         <View style={[styles.stepIndicatorContainer]}>
           <FontAwesome name="circle" size={10} color="#3dbb69" style={[styles.circleIcon]} />
           <FontAwesome name="circle" size={10} color="#c9c8c6" style={[styles.circleIcon]} />
@@ -56,7 +56,7 @@ export default class CampaignStepOneScreen extends Component {
         <View style={[styles.form]}>
           <View style={[styles.inputContainer]}>
             <TextInput
-              onChangeText={(text) => this.setState({campaignTitle:text})}
+              onChangeText={(text) => this.setState({ campaignTitle: text })}
               style={[styles.inputStyle]}
               placeholder="Your Campaign Title"
             />
@@ -65,10 +65,10 @@ export default class CampaignStepOneScreen extends Component {
 
           <View style={[styles.inputContainer]}>
             <TextInput
-              onChangeText={(text) => this.setState({campaignDetails:text})}
-              style={[styles.inputStyle, {height: 82.5, paddingTop: 16}]}
+              onChangeText={(text) => this.setState({ campaignDetails: text })}
+              style={[styles.inputStyle, { height: 82.5, paddingTop: 16 }]}
               placeholder="Your Campaign Details"
-              multiline={true}
+              multiline
             />
             <Text style={[styles.inputChar]}>0/30</Text>
           </View>
@@ -80,19 +80,19 @@ export default class CampaignStepOneScreen extends Component {
               value={this.state.itemValue}
               items={this.state.items}
               placeholder='Type of Recyclables'
-              onSelected={(item, index) => this.setState({itemValue: item})}
+              onSelected={(item, index) => this.setState({ itemValue: item })}
               placeholderTextColor="#8d8d8c"
             />
           </View>
           <View style={[styles.inputContainer]}>
             <TextInput
-              onChangeText={(text) => this.setState({campaignDetails:text})}
+              onChangeText={(text) => this.setState({ campaignDetails: text })}
               style={[styles.inputStyle]}
               placeholder="Your Goal (Eg. 5000 Kg of materials)"
             />
           </View>
-          <View style={{flexDirection: 'row'}}>
-            <Touchable style={[styles.chbxBtn, {marginLeft: 0,  backgroundColor: '#2fac5d'}]}>
+          <View style={{ flexDirection: 'row' }}>
+            <Touchable style={[styles.chbxBtn, { marginLeft: 0, backgroundColor: '#2fac5d' }]}>
               <Text style={[styles.btnText]}>KG</Text>
             </Touchable>
             <Touchable style={[styles.chbxBtn]}>
@@ -104,7 +104,7 @@ export default class CampaignStepOneScreen extends Component {
             <Touchable style={[styles.chbxBtn]}>
               <Text style={[styles.btnText]}>KM</Text>
             </Touchable>
-            <Touchable style={[ styles.chbxBtn, {marginRight: 0}]}>
+            <Touchable style={[styles.chbxBtn, { marginRight: 0 }]}>
               <Text style={[styles.btnText]}>-</Text>
             </Touchable>
           </View>
@@ -117,5 +117,3 @@ export default class CampaignStepOneScreen extends Component {
     );
   }
 }
-
-

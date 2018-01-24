@@ -1,7 +1,7 @@
-import {StyleSheet, Dimensions} from 'react-native'
+import { StyleSheet, Dimensions } from 'react-native';
 
 export default StyleSheet.create({
-  header:{
+  header: {
     backgroundColor: '#1f1f1d',
     paddingTop: 16,
     paddingBottom: 17,
@@ -24,7 +24,7 @@ export default StyleSheet.create({
     bottom: 17,
     zIndex: 9
   },
-  gothamLight:{
+  gothamLight: {
     // fontFamily: 'GothamRoundedLight'
   },
   title: {
@@ -34,5 +34,4 @@ export default StyleSheet.create({
     textAlign: 'center',
     fontFamily: 'Oswald-Regular'
   },
-
-})
+});

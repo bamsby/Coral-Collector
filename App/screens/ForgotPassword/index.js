@@ -4,7 +4,7 @@
  * @flow
  */
 
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import {
   StyleSheet,
   Text,
@@ -13,8 +13,8 @@ import {
   TextInput
 } from 'react-native';
 import Touchable from 'react-native-platform-touchable';
-import {Actions} from 'react-native-router-flux'
-import styles from './style'
+import { Actions } from 'react-native-router-flux';
+import styles from './style';
 
 export default class ForgotPswdScreen extends Component {
   constructor(props) {
@@ -27,7 +27,7 @@ export default class ForgotPswdScreen extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <Image source={require('../../../assets/images/bg.png')} style={[styles.bgImage]}/>
+        <Image source={require('../../../assets/images/bg.png')} style={[styles.bgImage]} />
         <Touchable style={[styles.backOverlay]} onPress={() => Actions.pop()}>
           <Image source={require('../../../assets/images/back_yellow.png')} />
         </Touchable>
@@ -39,7 +39,7 @@ export default class ForgotPswdScreen extends Component {
           <View style={[styles.form]}>
             <View style={[styles.inputField]}>
               <TextInput
-                onChangeText={(text) => this.setState({email:text})}
+                onChangeText={(text) => this.setState({ email: text })}
                 value={this.state.email}
                 style={[styles.inputStyle]}
               />
@@ -52,7 +52,7 @@ export default class ForgotPswdScreen extends Component {
             {/*/>*/}
 
             <View style={[styles.btnGrp]}>
-              <Touchable style={[styles.greenBtn, styles.btnTouchable ]}>
+              <Touchable style={[styles.greenBtn, styles.btnTouchable]}>
                 <Text style={styles.btnText}>CONTINUE</Text>
               </Touchable>
             </View>
@@ -62,5 +62,3 @@ export default class ForgotPswdScreen extends Component {
     );
   }
 }
-
-

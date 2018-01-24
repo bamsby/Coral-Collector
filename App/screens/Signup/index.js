@@ -13,25 +13,25 @@ import {
   TextInput
 } from 'react-native';
 import Touchable from 'react-native-platform-touchable';
-import {Checkbox} from 'teaset'
+import { Checkbox } from 'teaset';
 import { FontAwesome } from '@expo/vector-icons';
-import {Actions} from 'react-native-router-flux'
-import styles from './style'
+import { Actions } from 'react-native-router-flux';
+import styles from './style';
 
 export default class SignupScreen extends Component {
-  constructor(props){
+  constructor(props) {
     super(props);
     this.state = {
       fullname: 'full name',
       pswd: 'password',
       email: 'email',
       rpswd: 're-enter password'
-    }
+    };
   }
   render() {
     return (
       <View style={styles.container}>
-        <Image source={require('../../../assets/images/bg.png')} style={[styles.bgImage]}/>
+        <Image source={require('../../../assets/images/bg.png')} style={[styles.bgImage]} />
         <Touchable style={[styles.backOverlay]} onPress={() => Actions.pop()}>
           <Image source={require('../../../assets/images/back_yellow.png')} />
         </Touchable>
@@ -40,7 +40,7 @@ export default class SignupScreen extends Component {
           <View style={[styles.form]}>
             <View style={[styles.inputField]}>
               <TextInput
-                onChangeText={(text) => this.setState({fullname:text})}
+                onChangeText={(text) => this.setState({ fullname: text })}
                 value={this.state.fullname}
                 style={[styles.inputStyle]}
               />
@@ -48,7 +48,7 @@ export default class SignupScreen extends Component {
 
             <View style={[styles.inputField]}>
               <TextInput
-                onChangeText={(text) => this.setState({email:text})}
+                onChangeText={(text) => this.setState({ email: text })}
                 value={this.state.email}
                 style={[styles.inputStyle]}
               />
@@ -56,14 +56,14 @@ export default class SignupScreen extends Component {
 
             <View style={[styles.inputField]}>
               <TextInput
-                onChangeText={(text) => this.setState({pswd:text})}
+                onChangeText={(text) => this.setState({ pswd: text })}
                 value={this.state.pswd}
                 style={[styles.inputStyle]}
               />
             </View>
             <View style={[styles.inputField]}>
               <TextInput
-                onChangeText={(text) => this.setState({rpswd:text})}
+                onChangeText={(text) => this.setState({ rpswd: text })}
                 value={this.state.rpswd}
                 style={[styles.inputStyle]}
               />
@@ -71,15 +71,15 @@ export default class SignupScreen extends Component {
 
             <Checkbox
               title='Happy with our weekly newsletter'
-              titleStyle={{color: '#fff'}}
+              titleStyle={{ color: '#fff' }}
               checkedIcon={<FontAwesome name="check-circle" color="#3dbb69" size={20} />}
-              uncheckedIcon={<FontAwesome name="circle-thin" color="#3dbb69" size={20}/>}
+              uncheckedIcon={<FontAwesome name="circle-thin" color="#3dbb69" size={20} />}
               checked={this.state.checked}
-              onChange={checked => this.setState({checked})}
+              onChange={checked => this.setState({ checked })}
             />
 
             <View style={[styles.btnGrp]}>
-              <Touchable style={[styles.red, styles.btnTouchable ]} onPress={() => Actions.acctsetting()}>
+              <Touchable style={[styles.red, styles.btnTouchable]} onPress={() => Actions.acctsetting()}>
                 <Text style={styles.btnText}>SIGN UP</Text>
               </Touchable>
             </View>
@@ -96,5 +96,3 @@ export default class SignupScreen extends Component {
     );
   }
 }
-
-

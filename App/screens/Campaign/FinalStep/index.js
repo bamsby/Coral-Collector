@@ -4,7 +4,7 @@
  * @flow
  */
 
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import {
   StyleSheet,
   Text,
@@ -16,19 +16,18 @@ import {
 import Touchable from 'react-native-platform-touchable';
 import { FontAwesome } from '@expo/vector-icons';
 
-import styles from './style'
-import GreenMenuHeader from '../../partials/GreenHeader/index'
+import styles from './style';
+import GreenMenuHeader from '../../partials/GreenHeader/index';
 
 export default class CampaignFinalStepScreen extends Component {
   constructor(props) {
     super(props);
-
   }
 
   render() {
     return (
       <ScrollView style={styles.container}>
-        <GreenMenuHeader menuTitle="CREATE YOUR CAMPAIGN"/>
+        <GreenMenuHeader menuTitle="CREATE YOUR CAMPAIGN" />
         <View style={[styles.stepIndicatorContainer]}>
           <FontAwesome name="circle" size={10} color="#3dbb69" style={[styles.circleIcon]} />
           <FontAwesome name="circle" size={10} color="#3dbb69" style={[styles.circleIcon]} />
@@ -62,5 +61,3 @@ export default class CampaignFinalStepScreen extends Component {
     );
   }
 }
-
-

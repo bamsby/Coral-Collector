@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import {
   StyleSheet,
   Text,
@@ -7,20 +7,19 @@ import {
   TextInput
 } from 'react-native';
 import Touchable from 'react-native-platform-touchable';
-import { Actions } from 'react-native-router-flux'
+import { Actions } from 'react-native-router-flux';
 
-import styles from './style'
+import styles from './style';
 
 export default class GreenMenuHeader extends Component {
-  render(){
-    return(
+  render() {
+    return (
     <View style={[styles.header]}>
       <Touchable style={[styles.menuIconTouchable]} onPress={() => Actions.pop()}>
-        <Image source={require('../../../../assets/images/back.png')} style={[styles.menuIcon]}/>
+        <Image source={require('../../../../assets/images/back.png')} style={[styles.menuIcon]} />
       </Touchable>
       <Text style={[styles.gothamLight, styles.title]}>{this.props.menuTitle}</Text>
     </View>
-    )
+    );
   }
 }
-

@@ -1,4 +1,4 @@
-import {StyleSheet, Dimensions} from 'react-native'
+import {StyleSheet, Dimensions} from 'react-native';
 
 export default StyleSheet.create({
   container: {
@@ -11,7 +11,7 @@ export default StyleSheet.create({
     flex: 1
   },
   overlayContainer: {
-    backgroundColor: "rgba(50, 46, 63, 0.75);",
+    backgroundColor: 'rgba(50, 46, 63, 0.75);',
     // flex: 1,
     position: 'absolute',
     top: 50,
@@ -25,12 +25,12 @@ export default StyleSheet.create({
     paddingTop: 8,
     // alignItems: 'center'
   },
-  logo:{
+  logo: {
     height: 65,
     width: 70,
     alignSelf: 'center'
   },
-  gothamLight:{
+  gothamLight: {
     // fontFamily: 'GothamRoundedLight'
   },
   title: {
@@ -62,12 +62,12 @@ export default StyleSheet.create({
 
   },
   form: {
-    marginTop:15
+    marginTop: 15
   },
   btnGrp: {
     marginTop: 13,
   },
-  orange:{
+  orange: {
     backgroundColor: '#e07d30'
   },
   red: {
@@ -78,10 +78,10 @@ export default StyleSheet.create({
     color: '#fff',
     fontFamily: 'Oswald-Regular'
   },
-  btnTouchable:{
+  btnTouchable: {
     alignItems: 'center',
     // paddingVertical: 14,
-    marginBottom:8,
+    marginBottom: 8,
     height: 41,
     justifyContent: 'center'
   },
@@ -96,7 +96,7 @@ export default StyleSheet.create({
   google: {
     backgroundColor: '#de1d2b'
   },
-  socialBtnGrp:{
+  socialBtnGrp: {
     flexDirection: 'row',
     justifyContent: 'center',
     marginTop: 10,
@@ -118,9 +118,9 @@ export default StyleSheet.create({
     fontSize: 12,
   },
   backOverlay: {
-    backgroundColor: "rgba(50, 46, 63, 0.75)",
+    backgroundColor: 'rgba(50, 46, 63, 0.75)',
     position: 'absolute',
     top: 30,
     left: 10
   }
-})
+});

@@ -1,4 +1,4 @@
-import {StyleSheet, Dimensions} from 'react-native'
+import { StyleSheet, Dimensions } from 'react-native';
 
 export default StyleSheet.create({
   container: {
@@ -20,10 +20,10 @@ export default StyleSheet.create({
     color: '#fff',
     fontFamily: 'Oswald-Regular',
   },
-  btnTouchable:{
+  btnTouchable: {
     alignItems: 'center',
     // paddingVertical: 14,
-    marginBottom:8,
+    marginBottom: 8,
     width: 112.5,
     alignSelf: 'center',
     marginTop: 18,
@@ -57,7 +57,7 @@ export default StyleSheet.create({
   btnGrp: {
     marginTop: 13,
   },
-  orange:{
+  orange: {
     backgroundColor: '#ee8c3c'
   },
   red: {
@@ -93,4 +93,4 @@ export default StyleSheet.create({
     fontFamily: 'open-sans-light',
     color: '#3dbb69'
   }
-})
+});

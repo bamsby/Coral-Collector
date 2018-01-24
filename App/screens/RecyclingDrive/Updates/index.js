@@ -4,7 +4,7 @@
  * @flow
  */
 
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import {
   StyleSheet,
   Text,
@@ -15,9 +15,9 @@ import {
 } from 'react-native';
 import Touchable from 'react-native-platform-touchable';
 
-import styles from './style'
-import TwoIconMenuHeader from '../../partials/TwoIconMenu/index'
-import CloudLayout from '../../partials/Cloud/index'
+import styles from './style';
+import TwoIconMenuHeader from '../../partials/TwoIconMenu/index';
+import CloudLayout from '../../partials/Cloud/index';
 
 export default class RecyclingDriveUpdateScreen extends Component {
   constructor(props) {
@@ -30,21 +30,21 @@ export default class RecyclingDriveUpdateScreen extends Component {
   render() {
     return (
       <ScrollView style={styles.container}>
-        <TwoIconMenuHeader menuTitle="RECYCLING DRIVE"/>
+        <TwoIconMenuHeader menuTitle="RECYCLING DRIVE" />
 
         <View style={[styles.body]}>
           <View style={[styles.pageIndicator]}>
             <View style={[styles.backerCloud]}>
-              <CloudLayout cloudText="DETAILS" linkTo="recyclingdrivedetail" isActive={false} bgColor="#eb3a46"/>
+              <CloudLayout cloudText="DETAILS" linkTo="recyclingdrivedetail" isActive={false} bgColor="#eb3a46" />
             </View>
             <View style={[styles.backerCloud]}>
-              <CloudLayout cloudText="UPDATES (3)" linkTo="recyclingdriveupdate" isActive={true} bgColor="#ee8c3c"/>
+              <CloudLayout cloudText="UPDATES (3)" linkTo="recyclingdriveupdate" isActive bgColor="#ee8c3c" />
             </View>
             <View style={[styles.backerCloud]}>
-              <CloudLayout cloudText="BACKERS (3)" linkTo="recyclingdrivebacker" isActive={false} bgColor="#3bb866"/>
+              <CloudLayout cloudText="BACKERS (3)" linkTo="recyclingdrivebacker" isActive={false} bgColor="#3bb866" />
             </View>
             <View style={[styles.backerCloud]}>
-              <CloudLayout cloudText="COMMENTS (54)" linkTo="recyclingdrivecomment" isActive={false} bgColor="#eb3a46"/>
+              <CloudLayout cloudText="COMMENTS (54)" linkTo="recyclingdrivecomment" isActive={false} bgColor="#eb3a46" />
             </View>
           </View>
 
@@ -56,7 +56,7 @@ export default class RecyclingDriveUpdateScreen extends Component {
                   <View style={[styles.addUpdate]}>
                     <TextInput
                       placeholder="add your comment"
-                      style={{height: 34, backgroundColor:'#dedede', paddingHorizontal: 15}}
+                      style={{ height: 34, backgroundColor: '#dedede', paddingHorizontal: 15 }}
                     />
                     <Touchable style={[styles.orange, styles.btnTouchable]}>
                       <Text style={styles.btnText}>POST UPDATE</Text>
@@ -109,14 +109,14 @@ export default class RecyclingDriveUpdateScreen extends Component {
                   <View style={[styles.noUpdateTextContainer]}>
                     <Text style={[styles.noUpdateText]}>Looks like you have no updates so far</Text>
                     <View style={[styles.triangleContainer]}>
-                      <View style={[styles.triangle]}/>
+                      <View style={[styles.triangle]} />
                     </View>
                   </View>
                   <View style={[styles.noUpdateTextAreaContainer]}>
                     <TextInput
                       placeholder="Update your backers"
                       style={[styles.noUpdateTextArea]}
-                      multiline={true}
+                      multiline
                     />
                   </View>
                   <Text style={[styles.inputChar]}>500/500</Text>
@@ -131,5 +131,3 @@ export default class RecyclingDriveUpdateScreen extends Component {
     );
   }
 }
-
-

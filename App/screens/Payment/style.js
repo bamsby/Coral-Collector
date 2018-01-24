@@ -1,4 +1,4 @@
-import {StyleSheet, Dimensions} from 'react-native'
+import { StyleSheet, Dimensions } from 'react-native';
 
 export default StyleSheet.create({
   container: {
@@ -36,7 +36,7 @@ export default StyleSheet.create({
   media: {
     height: 53,
     width: 53,
-    borderRadius: 53/2,
+    borderRadius: 53 / 2,
     backgroundColor: '#ccc'
   },
   profileText: {
@@ -58,7 +58,7 @@ export default StyleSheet.create({
     fontFamily: 'Oswald-Regular',
     textAlign: 'center'
   },
-  btnTouchable:{
+  btnTouchable: {
     alignSelf: 'center',
     // paddingVertical: 5,
     width: 111,
@@ -71,4 +71,4 @@ export default StyleSheet.create({
   orangeBtn: {
     backgroundColor: '#ee8c3c'
   }
-})
+});

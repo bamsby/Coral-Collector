@@ -4,7 +4,7 @@
  * @flow
  */
 
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import {
   StyleSheet,
   Text,
@@ -13,10 +13,12 @@ import {
   TextInput
 } from 'react-native';
 import Touchable from 'react-native-platform-touchable';
-import styles from './style'
-import MenuHeader from '../partials/MenuHeader/index'
-import CloudLayout from '../partials/Cloud/index'
 import * as Progress from 'react-native-progress';
+
+import styles from './style';
+import MenuHeader from '../partials/MenuHeader/index';
+import CloudLayout from '../partials/Cloud/index';
+
 export default class MyCampaignsScreen extends Component {
   constructor(props) {
     super(props);
@@ -25,21 +27,21 @@ export default class MyCampaignsScreen extends Component {
       npswd: 'New Password',
       rpswd: 'Re-enter Password',
       cpswd: 'Current Password',
-    }
+    };
   }
 
   render() {
     return (
       <View style={styles.container}>
-        <MenuHeader menuTitle="MY CAMPAIGNS"/>
+        <MenuHeader menuTitle="MY CAMPAIGNS" />
 
         <View style={[styles.body]}>
           <View style={[styles.pageIndicator]}>
             <View style={[styles.campaingCloud]}>
-              <CloudLayout cloudText="STILL GOING" linkTo="" isActive={true} bgColor="#3bb866"/>
+              <CloudLayout cloudText="STILL GOING" linkTo="" isActive bgColor="#3bb866" />
             </View>
             <View style={[styles.campaingCloud]}>
-              <CloudLayout cloudText="FINISHED" linkTo="" isActive={false} bgColor="#eb3a46"/>
+              <CloudLayout cloudText="FINISHED" linkTo="" isActive={false} bgColor="#eb3a46" />
             </View>
           </View>
 
@@ -172,5 +174,3 @@ export default class MyCampaignsScreen extends Component {
     );
   }
 }
-
-

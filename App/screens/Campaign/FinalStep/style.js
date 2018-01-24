@@ -1,4 +1,4 @@
-import {StyleSheet, Dimensions} from 'react-native'
+import {StyleSheet, Dimensions} from 'react-native';
 
 export default StyleSheet.create({
   container: {
@@ -25,7 +25,7 @@ export default StyleSheet.create({
     fontSize: 11,
     textAlign: 'center'
   },
-  shareBtnBlock:{
+  shareBtnBlock: {
     marginTop: 58,
     paddingHorizontal: Dimensions.get('window').width > 320 ? 66 : 26
   },
@@ -44,22 +44,22 @@ export default StyleSheet.create({
     fontFamily: 'Oswald-Regular',
     fontSize: 15.5
   },
-  fb:{
+  fb: {
     backgroundColor: '#2d94bf'
   },
-  twitter:{
+  twitter: {
     backgroundColor: '#59bce4'
   },
-  google:{
+  google: {
     backgroundColor: '#df4444'
   },
-  pinterest:{
+  pinterest: {
     backgroundColor: '#c62f2f'
   },
-  insta:{
+  insta: {
     backgroundColor: '#2f7995'
   },
-  contact:{
+  contact: {
     backgroundColor: '#796e6f'
   }
-})
+});

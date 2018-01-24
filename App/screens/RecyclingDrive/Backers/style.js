@@ -1,4 +1,4 @@
-import {StyleSheet, Dimensions} from 'react-native'
+import { StyleSheet, Dimensions } from 'react-native';
 
 export default StyleSheet.create({
   container: {
@@ -27,7 +27,7 @@ export default StyleSheet.create({
     height: 54,
     width: 54,
     backgroundColor: '#acacac',
-    borderRadius: 54/2,
+    borderRadius: 54 / 2,
     position: 'absolute',
     left: 0
   },
@@ -38,19 +38,19 @@ export default StyleSheet.create({
     paddingTop: 11,
     paddingBottom: 7
   },
-  title:{
+  title: {
     fontSize: 12.5,
     color: '#1f1f1d',
     fontFamily: 'Oswald-Regular',
     lineHeight: 12.5
   },
-  code:{
+  code: {
     color: '#0f83d3',
     fontSize: 10,
     lineHeight: 13.7,
     fontFamily: 'open-sans-semibold'
   },
-  backer:{
+  backer: {
     color: '#ec3b47',
     fontSize: 10,
     lineHeight: 13.7,
@@ -64,4 +64,4 @@ export default StyleSheet.create({
     right: 20,
     fontFamily: 'open-sans-semibold'
   }
-})
+});

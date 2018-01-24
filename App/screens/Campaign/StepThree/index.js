@@ -4,7 +4,7 @@
  * @flow
  */
 
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import {
   StyleSheet,
   Text,
@@ -16,11 +16,11 @@ import {
 } from 'react-native';
 import Touchable from 'react-native-platform-touchable';
 import { FontAwesome } from '@expo/vector-icons';
-import Modal from "react-native-modal";
-import {Actions} from 'react-native-router-flux'
+import Modal from 'react-native-modal';
+import { Actions } from 'react-native-router-flux';
 
-import styles from './style'
-import GreenMenuHeader from '../../partials/GreenHeader/index'
+import styles from './style';
+import GreenMenuHeader from '../../partials/GreenHeader/index';
 
 export default class CampaignStepOneScreen extends Component {
   constructor(props) {
@@ -35,17 +35,17 @@ export default class CampaignStepOneScreen extends Component {
   }
 
   openModal() {
-    this.setState({modalVisible:true});
+    this.setState({ modalVisible: true });
   }
 
   closeModal() {
-    this.setState({modalVisible:false});
+    this.setState({ modalVisible:false });
   }
 
   render() {
     return (
       <ScrollView style={styles.container}>
-        <GreenMenuHeader menuTitle="CREATE YOUR CAMPAIGN"/>
+        <GreenMenuHeader menuTitle="CREATE YOUR CAMPAIGN" />
         <View style={[styles.stepIndicatorContainer]}>
           <FontAwesome name="circle" size={10} color="#3dbb69" style={[styles.circleIcon]} />
           <FontAwesome name="circle" size={10} color="#3dbb69" style={[styles.circleIcon]} />
@@ -54,13 +54,13 @@ export default class CampaignStepOneScreen extends Component {
         </View>
 
         <View>
-          <Text style={{textAlign: 'center', fontFamily:'open-sans-semibold', color: '#6d6d6d', marginBottom: 12}}>(optional)</Text>
+          <Text style={{ textAlign: 'center', fontFamily: 'open-sans-semibold', color: '#6d6d6d', marginBottom: 12 }}>(optional)</Text>
           <Touchable style={[styles.btnTouchable, styles.greenBtn]} onPress={() => this.openModal()}>
-            <View style={{flexDirection: 'row'}}>
+            <View style={{ flexDirection: 'row' }}>
             {
               this.state.anyRewards
                 ?
-                <Image source={require('../../../../assets/images/add.png')} style={{marginRight: 10}} />
+                <Image source={require('../../../../assets/images/add.png')} style={{ marginRight: 10 }} />
                 :
                 null
             }
@@ -72,7 +72,7 @@ export default class CampaignStepOneScreen extends Component {
         {
           this.state.anyRewards
           ?
-            <View style={{paddingHorizontal: Dimensions.get('window').width > 320 ? 66 : 26}}>
+            <View style={{ paddingHorizontal: Dimensions.get('window').width > 320 ? 66 : 26 }}>
               <View style={[styles.list]}>
                 <View style={[styles.leftContent]}>
                   <Text style={[styles.listTitle]}>Recycle 10 Kg and above</Text>
@@ -108,15 +108,15 @@ export default class CampaignStepOneScreen extends Component {
               </View>
             </View>
           :
-            <View style={{minHeight: 320, justifyContent: 'center', alignItems:'center'}}>
+            <View style={{ minHeight: 320, justifyContent: 'center', alignItems: 'center' }}>
               <Text>You have not yet added any rewards</Text>
             </View>
         }
-        <View style={[styles.btnGrp, {flexDirection: 'row', justifyContent: 'center'}]}>
-          <Touchable style={[styles.greenBtn, styles.btnTouchable, {marginHorizontal: 10} ]} onPress={() => Actions.pop()}>
+        <View style={[styles.btnGrp, { flexDirection: 'row', justifyContent: 'center' }]}>
+          <Touchable style={[styles.greenBtn, styles.btnTouchable, { marginHorizontal: 10 }]} onPress={() => Actions.pop()}>
             <Text style={styles.btnText}>PREVIOUS</Text>
           </Touchable>
-          <Touchable style={[styles.greenBtn, styles.btnTouchable, {marginHorizontal: 10}]} onPress={() => Actions.champaignfinalstep()}>
+          <Touchable style={[styles.greenBtn, styles.btnTouchable, { marginHorizontal: 10 }]} onPress={() => Actions.champaignfinalstep()}>
             <Text style={styles.btnText}>NEXT</Text>
           </Touchable>
         </View>
@@ -125,33 +125,33 @@ export default class CampaignStepOneScreen extends Component {
           <View style={[styles.modalContent]}>
             <View style={[styles.inputContainer]}>
               <TextInput
-                onChangeText={(text) => this.setState({rewardName:text})}
+                onChangeText={(text) => this.setState({ rewardName: text })}
                 style={[styles.inputStyle]}
                 placeholder="Reward Name"
               />
               <Text style={[styles.inputChar]}>0/30</Text>
             </View>
-            <View style={[styles.inputContainer, {marginBottom: 15}]}>
+            <View style={[styles.inputContainer, { marginBottom: 15 }]}>
               <TextInput
-                onChangeText={(text) => this.setState({rewardAmt:text})}
+                onChangeText={(text) => this.setState({ rewardAmt: text })}
                 style={[styles.inputStyle]}
                 placeholder="Reward Amount"
               />
             </View>
             <View style={[styles.inputContainer]}>
               <TextInput
-                onChangeText={(text) => this.setState({rewardDetail:text})}
+                onChangeText={(text) => this.setState({ rewardDetail: text })}
                 style={[styles.inputStyle]}
                 placeholder="Reward Details"
               />
               <Text style={[styles.inputChar]}>500/500</Text>
             </View>
 
-            <View style={[styles.btnGrp, {flexDirection: 'row', justifyContent: 'center'}]}>
-              <Touchable style={[styles.red, styles.btnTouchable, {marginHorizontal: 10} ]} onPress={() => this.closeModal()}>
+            <View style={[styles.btnGrp, { flexDirection: 'row', justifyContent: 'center' }]}>
+              <Touchable style={[styles.red, styles.btnTouchable, { marginHorizontal: 10 }]} onPress={() => this.closeModal()}>
                 <Text style={styles.btnText}>CANCEL</Text>
               </Touchable>
-              <Touchable style={[styles.orange, styles.btnTouchable, {marginHorizontal: 10}]} >
+              <Touchable style={[styles.orange, styles.btnTouchable, { marginHorizontal: 10 }]} >
                 <Text style={styles.btnText}>SAVE</Text>
               </Touchable>
             </View>
@@ -162,5 +162,3 @@ export default class CampaignStepOneScreen extends Component {
     );
   }
 }
-
-
