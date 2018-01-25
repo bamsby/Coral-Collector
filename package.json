@@ -30,6 +30,7 @@
     "react-native-progress-bar": "^0.1.2",
     "react-native-qrcode": "^0.2.6",
     "react-native-router-flux": "^4.0.0-beta.28",
+    "react-native-scripts": "^1.9.0",
     "react-redux": "^5.0.6",
     "redux-thunk": "^2.2.0",
     "teaset": "^0.5.5"
