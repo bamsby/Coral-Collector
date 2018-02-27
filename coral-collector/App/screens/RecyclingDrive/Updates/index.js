@@ -23,7 +23,7 @@ export default class RecyclingDriveUpdateScreen extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      haveUpdates: true
+      haveUpdates: false
     }
   }
 
@@ -56,7 +56,9 @@ export default class RecyclingDriveUpdateScreen extends Component {
                   <View style={[styles.addUpdate]}>
                     <TextInput
                       placeholder="add your comment"
-                      style={{ height: 34, backgroundColor: '#dedede', paddingHorizontal: 15 }}
+                      style={{height: 40, backgroundColor:'#dedede', paddingHorizontal: 15}}
+                      multiline={true}
+                      underlineColorAndroid='transparent'
                     />
                     <Touchable style={[styles.orange, styles.btnTouchable]}>
                       <Text style={styles.btnText}>POST UPDATE</Text>
@@ -108,15 +110,17 @@ export default class RecyclingDriveUpdateScreen extends Component {
                 <View style={[styles.noUpdateView]}>
                   <View style={[styles.noUpdateTextContainer]}>
                     <Text style={[styles.noUpdateText]}>Looks like you have no updates so far</Text>
-                    <View style={[styles.triangleContainer]}>
-                      <View style={[styles.triangle]} />
-                    </View>
+
+                  </View>
+                  <View style={[styles.triangleContainer]}>
+                    <View style={[styles.triangle]}/>
                   </View>
                   <View style={[styles.noUpdateTextAreaContainer]}>
                     <TextInput
                       placeholder="Update your backers"
                       style={[styles.noUpdateTextArea]}
                       multiline
+                      underlineColorAndroid='transparent'
                     />
                   </View>
                   <Text style={[styles.inputChar]}>500/500</Text>

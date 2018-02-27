@@ -3,7 +3,7 @@ import { StyleSheet, Dimensions } from 'react-native';
 export default StyleSheet.create({
   header: {
     backgroundColor: '#1f1f1d',
-    paddingTop: 16,
+    paddingTop: 20,
     paddingBottom: 17,
     position: 'relative'
   },
@@ -15,8 +15,9 @@ export default StyleSheet.create({
   menuIconTouchable: {
     position: 'absolute',
     left: 11,
-    bottom: 17,
-    zIndex: 9
+    bottom: 10,
+    zIndex: 9,
+    padding: 5
   },
   gothamLight:{
     // fontFamily: 'GothamRoundedLight'
@@ -25,6 +26,17 @@ export default StyleSheet.create({
     fontSize: 15,
     color: '#fff',
     marginTop: 12,
-    textAlign: 'center'
+    textAlign: 'center',
+    fontFamily: 'Oswald-Regular'
   },
-});
+  new: {
+    width: 6,
+    height: 6,
+    backgroundColor: 'red',
+    borderRadius: 6/2,
+    position: 'absolute',
+    right: 0,
+    top: 0,
+    zIndex: 1
+  }
+})

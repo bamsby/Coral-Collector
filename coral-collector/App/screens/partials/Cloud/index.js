@@ -13,22 +13,22 @@ import styles from './style';
 export default class CloudLayout extends Component {
   render() {
     const linkTo = this.props.linkTo;
-    return (
-      <Touchable style={[styles.cloudLayout, { backgroundColor: this.props.bgColor }]} onPress={() => Actions.push(linkTo)}>
-        <View>
-          <Text style={[styles.cloudText]}>{this.props.cloudText}</Text>
-          {
-            this.props.isActive
-              ?
-              <View style={[styles.triangleContainer]} >
-                <View style={[styles.triangle, { borderTopColor: this.props.bgColor }]} />
-              </View>
-              :
-              null
-          }
-        </View>
+    return(
+      <View style={{marginBottom: 10}}>
+        <Touchable style={[styles.cloudLayout, {backgroundColor: this.props.bgColor}]} onPress={() => Actions.push(linkTo)}>
+            <Text style={[styles.cloudText]}>{this.props.cloudText}</Text>
+        </Touchable>
+        {
+        this.props.isActive
+          ?
+          <View style={[styles.triangleContainer]} >
+            <View style={[styles.triangle, {borderTopColor: this.props.bgColor}]} />
+          </View>
+          :
+          null
+      }
+      </View>
+    )
 
-      </Touchable>
-    );
   }
 }

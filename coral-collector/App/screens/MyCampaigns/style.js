@@ -47,17 +47,17 @@ export default StyleSheet.create({
     right: 5
   },
   cardFooter: {
-    backgroundColor: '#d8d8d8',
+    backgroundColor: '#eee',
     paddingVertical: 8,
     flexDirection: 'row'
   },
   li: {
     flex: 1,
     flexDirection: 'row',
-    justifyContent: 'center',
+    justifyContent:'center',
     alignItems: 'center',
   },
-  p: {
+  p:{
     // fontSize: 12.5,
     fontSize: 14,
     fontFamily: 'Oswald-Regular'

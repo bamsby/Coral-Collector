@@ -29,7 +29,8 @@ export default StyleSheet.create({
     backgroundColor: '#acacac',
     borderRadius: 54 / 2,
     position: 'absolute',
-    left: 0
+    left: 0,
+    top: 5
   },
   text: {
     borderBottomWidth: 0.5,

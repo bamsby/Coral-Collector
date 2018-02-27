@@ -39,21 +39,25 @@ export default class LoginScreen extends Component {
             <View style={[styles.inputField]}>
               <TextInput
                 onChangeText={(text) => this.setState({ uname: text })}
-                value={this.state.uname}
+                placeholder={this.state.uname}
                 style={[styles.inputStyle]}
+                placeholderTextColor="#fff"
+                underlineColorAndroid='transparent'
               />
             </View>
 
             <View style={[styles.inputField]}>
               <TextInput
                 onChangeText={(text) => this.setState({ pswd: text })}
-                value={this.state.pswd}
+                placeholder={this.state.pswd}
                 style={[styles.inputStyle]}
+                placeholderTextColor="#fff"
+                underlineColorAndroid='transparent'
               />
             </View>
 
             <View style={[styles.btnGrp]}>
-              <Touchable style={[styles.orange, styles.btnTouchable]} onPress={() => Actions.recyclingdrivebacker()}>
+              <Touchable style={[styles.orange, styles.btnTouchable]} onPress={() => Actions.home()}>
                 <Text style={styles.btnText}>SIGN IN</Text>
               </Touchable>
               <Touchable style={[styles.red, styles.btnTouchable]} onPress={() => Actions.signup()}>
@@ -74,10 +78,9 @@ export default class LoginScreen extends Component {
               <Text style={[styles.forgotPswdLink]}>Forgot your password?</Text>
             </Touchable>
 
-            <Touchable style={[styles.greenBtn, styles.btnTouchable, { marginTop: 13 }]} onPress={() => Actions.champaignstepone()}>
+            <Touchable style={[styles.greenBtn, styles.btnTouchable, { marginTop: 13 }]} onPress={() => Actions.home()}>
               <Text style={[styles.btnText]}>BROWSE CAMPAIGNS</Text>
             </Touchable>
-            <Text style={{ marginTop: 30, color: 'red', textAlign: 'center' }} onPress={() => Actions.mycampaign()}>For test: Open My campaign</Text>
           </View>
         </ScrollView>
       </View>

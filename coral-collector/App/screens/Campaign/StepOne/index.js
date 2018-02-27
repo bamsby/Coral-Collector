@@ -38,10 +38,15 @@ export default class CampaignStepOneScreen extends Component {
       'Hickory',
       'Lemon',
       'Mango',
-    ]
+    ],
+      activeQty:'kg'
     }
+    this.changeQty = this.changeQty.bind(this)
   }
 
+  changeQty(qty){
+    this.setState({activeQty: qty})
+  }
   render() {
     return (
       <ScrollView style={styles.container}>
@@ -59,6 +64,8 @@ export default class CampaignStepOneScreen extends Component {
               onChangeText={(text) => this.setState({ campaignTitle: text })}
               style={[styles.inputStyle]}
               placeholder="Your Campaign Title"
+              placeholderTextColor='#5a5a5a'
+              underlineColorAndroid='transparent'
             />
             <Text style={[styles.inputChar]}>0/10</Text>
           </View>
@@ -68,7 +75,9 @@ export default class CampaignStepOneScreen extends Component {
               onChangeText={(text) => this.setState({ campaignDetails: text })}
               style={[styles.inputStyle, { height: 82.5, paddingTop: 16 }]}
               placeholder="Your Campaign Details"
-              multiline
+              multiline={true}
+              placeholderTextColor='#5a5a5a'
+              underlineColorAndroid='transparent'
             />
             <Text style={[styles.inputChar]}>0/30</Text>
           </View>
@@ -80,8 +89,8 @@ export default class CampaignStepOneScreen extends Component {
               value={this.state.itemValue}
               items={this.state.items}
               placeholder='Type of Recyclables'
-              onSelected={(item, index) => this.setState({ itemValue: item })}
-              placeholderTextColor="#8d8d8c"
+              onSelected={(item, index) => this.setState({itemValue: item})}
+              placeholderTextColor="#5a5a5a"
             />
           </View>
           <View style={[styles.inputContainer]}>
@@ -89,22 +98,36 @@ export default class CampaignStepOneScreen extends Component {
               onChangeText={(text) => this.setState({ campaignDetails: text })}
               style={[styles.inputStyle]}
               placeholder="Your Goal (Eg. 5000 Kg of materials)"
+              placeholderTextColor='#5a5a5a'
+              underlineColorAndroid='transparent'
             />
           </View>
-          <View style={{ flexDirection: 'row' }}>
-            <Touchable style={[styles.chbxBtn, { marginLeft: 0, backgroundColor: '#2fac5d' }]}>
+          <View style={{flexDirection: 'row'}}>
+            <Touchable
+              style={[styles.chbxBtn, this.state.activeQty === 'kg' ? styles.active : null, {marginLeft: 0 }]}
+              onPress={() => this.changeQty('kg')}
+            >
               <Text style={[styles.btnText]}>KG</Text>
             </Touchable>
-            <Touchable style={[styles.chbxBtn]}>
+            <Touchable
+              style={[styles.chbxBtn, this.state.activeQty === 'pcs' ? styles.active : null]}
+              onPress={() => this.changeQty('pcs')}
+            >
               <Text style={[styles.btnText]}>PCS</Text>
             </Touchable>
-            <Touchable style={[styles.chbxBtn]}>
+            <Touchable style={[styles.chbxBtn, this.state.activeQty === 's' ? styles.active : null]}
+                       onPress={() => this.changeQty('s')}
+            >
               <Text style={[styles.btnText]}>S</Text>
             </Touchable>
-            <Touchable style={[styles.chbxBtn]}>
+            <Touchable style={[styles.chbxBtn, this.state.activeQty === 'km' ? styles.active : null]}
+                       onPress={() => this.changeQty('km')}
+            >
               <Text style={[styles.btnText]}>KM</Text>
             </Touchable>
-            <Touchable style={[styles.chbxBtn, { marginRight: 0 }]}>
+            <Touchable style={[styles.chbxBtn, this.state.activeQty === 'dash' ? styles.active : null, {marginRight: 0}]}
+                       onPress={() => this.changeQty('dash')}
+            >
               <Text style={[styles.btnText]}>-</Text>
             </Touchable>
           </View>

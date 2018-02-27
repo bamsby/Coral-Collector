@@ -19,8 +19,8 @@ export default class TwoIconMenuHeader extends Component {
         <Image source={require('../../../../assets/images/back.png')} style={[styles.menuIcon]} />
       </Touchable>
       <Text style={[styles.gothamLight, styles.title]}>{this.props.menuTitle}</Text>
-      <Touchable style={[styles.menuIconTouchableRight]} onPress={() => Actions.payment()}>
-        <Image source={require('../../../../assets/images/share.png')} style={[styles.menuIcon]} />
+      <Touchable style={[styles.menuIconTouchableRight]}>
+        <Image source={require('../../../../assets/images/share.png')} style={[styles.menuIcon]}/>
       </Touchable>
     </View>
     );

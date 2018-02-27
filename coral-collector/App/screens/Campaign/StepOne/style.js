@@ -63,5 +63,8 @@ export default StyleSheet.create({
     marginHorizontal: 4,
     alignItems: 'center',
     backgroundColor: '#c9c8c6'
+  },
+  active: {
+    backgroundColor: '#2fac5d'
   }
 });

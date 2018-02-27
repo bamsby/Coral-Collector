@@ -14,10 +14,12 @@ import {
   ScrollView
 } from 'react-native';
 import Touchable from 'react-native-platform-touchable';
-import { FontAwesome } from '@expo/vector-icons';
+import {FontAwesome} from '@expo/vector-icons';
 import DatePicker from 'react-native-datepicker';
-import { Actions } from 'react-native-router-flux';
-import { Select } from 'teaset';
+import {Actions} from 'react-native-router-flux';
+import {Select} from 'teaset';
+import {MapView, ImagePicker} from 'expo';
+import {Marker} from 'react-native-maps';
 
 import styles from './style';
 import GreenMenuHeader from '../../partials/GreenHeader/index';
@@ -38,11 +40,33 @@ export default class CampaignStepOneScreen extends Component {
         'Hickory',
         'Lemon',
         'Mango',
-      ]
+      ],
+      marker: [
+        {
+          "latitude": 37.78825,
+          "longitude": -122.4324,
+          "id": 1
+        },
+      ],
+      image: null,
     }
   }
 
+  _pickImage = async () => {
+    let result = await ImagePicker.launchImageLibraryAsync({
+      allowsEditing: true,
+      aspect: [4, 3],
+    });
+
+    console.log(result);
+
+    if (!result.cancelled) {
+      this.setState({ image: result.uri });
+    }
+  };
+
   render() {
+    let {image} = this.state;
     return (
       <ScrollView style={styles.container}>
         <GreenMenuHeader menuTitle="CREATE YOUR CAMPAIGN" />
@@ -54,10 +78,14 @@ export default class CampaignStepOneScreen extends Component {
         </View>
 
         <View>
-          <View style={[styles.imageUpload]}>
-            <Image source={require('../../../../assets/images/upload.png')} />
-            <Text style={{ fontSize: 12.5, marginTop: 7 }}>Upload photo/video</Text>
-          </View>
+          <Touchable onPress={this._pickImage}>
+            <View style={[styles.imageUpload]}>
+              <Image source={require('../../../../assets/images/upload.png')}/>
+              <Text style={{fontSize: 12.5, marginTop: 7}}>Upload photo/video</Text>
+              {image &&
+              <Image source={{ uri: image }} style={{height: 100, width: 150}}/>}
+            </View>
+          </Touchable>
           <View style={[styles.form]}>
             <View style={[styles.formRow]}>
               <Text style={{ fontSize: 12.5, fontFamily: 'open-sans-bold', marginRight: 10 }}>Event Date</Text>
@@ -68,7 +96,7 @@ export default class CampaignStepOneScreen extends Component {
                 format="YYYY-MM-DD"
                 confirmBtnText="Confirm"
                 cancelBtnText="Cancel"
-                showIcon={this.state.date !== '' ? false : true}
+                showIcon={this.state.date!=="" ? false : true}
                 iconSource={require('../../../../assets/images/date.png')}
                 customStyles={{
                   dateIcon: {
@@ -87,17 +115,14 @@ export default class CampaignStepOneScreen extends Component {
             </View>
 
             <View style={[styles.formRow]}>
-              <Text style={{ fontSize: 12.5, fontFamily: 'open-sans-bold', marginRight: 10 }}>Event Date</Text>
+              <Text style={{fontSize: 12.5, fontFamily: 'open-sans-bold', marginRight: 10}}>Event Time</Text>
               <DatePicker
                 mode="time"
                 placeholder=" "
                 date={this.state.time}
-                format="YYYY-MM-DD"
-                minDate="2016-05-01"
-                maxDate="2016-06-01"
                 confirmBtnText="Confirm"
                 cancelBtnText="Cancel"
-                showIcon={this.state.time !== '' ? false : true}
+                showIcon={this.state.time!=="" ? false : true}
                 iconSource={require('../../../../assets/images/time.png')}
                 customStyles={{
                   dateIcon: {
@@ -128,10 +153,31 @@ export default class CampaignStepOneScreen extends Component {
                     paddingHorizontal: 15,
                     textAlign: 'center'
                 }}
+                underlineColorAndroid='transparent'
               />
             </View>
           </View>
-          <View style={{height: 150, backgroundColor:'#cfcecd'}}></View>
+          <View style={{height: 150, backgroundColor:'#cfcecd'}}>
+            <MapView
+              style={{ flex: 1 }}
+              initialRegion={{
+                latitude: 37.78825,
+                longitude: -122.4324,
+                latitudeDelta: 0.0922,
+                longitudeDelta: 0.0421,
+              }}
+            >
+              {
+                this.state.marker.map(marker => (
+                  <MapView.Marker coordinate={{latitude:marker.latitude,longitude:marker.longitude}}
+                                  key={marker.id}
+                                  image={require('../../../../assets/images/pin.png')}
+                  >
+                  </MapView.Marker>
+                ))
+              }
+            </MapView>
+          </View>
 
           <View style={[styles.inputContainer]}>
             <Select
@@ -143,11 +189,13 @@ export default class CampaignStepOneScreen extends Component {
               placeholderTextColor="#8d8d8c"
             />
           </View>
-          <View style={[styles.btnGrp, { flexDirection: 'row', justifyContent: 'center' }]}>
-            <Touchable style={[styles.greenBtn, styles.btnTouchable, { marginHorizontal: 10 }]} onPress={() => Actions.pop()}>
+          <View style={[styles.btnGrp, {flexDirection: 'row', justifyContent: 'center'}]}>
+            <Touchable style={[styles.greenBtn, styles.btnTouchable, {marginHorizontal: 10} ]}
+                       onPress={() => Actions.pop()}>
               <Text style={styles.btnText}>PREVIOUS</Text>
             </Touchable>
-            <Touchable style={[styles.greenBtn, styles.btnTouchable, { marginHorizontal: 10 }]} onPress={() => Actions.champaignstepthree()}>
+            <Touchable style={[styles.greenBtn, styles.btnTouchable, {marginHorizontal: 10}]}
+                       onPress={() => Actions.champaignstepthree()}>
               <Text style={styles.btnText}>NEXT</Text>
             </Touchable>
           </View>

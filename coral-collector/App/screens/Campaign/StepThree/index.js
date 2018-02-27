@@ -30,7 +30,7 @@ export default class CampaignStepOneScreen extends Component {
       rewardName: 'Reward Name',
       rewardAmt: 'Reward Amount',
       rewardDetail: 'Reward Detail',
-      anyRewards: true
+      anyRewards: false
     };
   }
 
@@ -128,6 +128,7 @@ export default class CampaignStepOneScreen extends Component {
                 onChangeText={(text) => this.setState({ rewardName: text })}
                 style={[styles.inputStyle]}
                 placeholder="Reward Name"
+                underlineColorAndroid='transparent'
               />
               <Text style={[styles.inputChar]}>0/30</Text>
             </View>
@@ -136,6 +137,7 @@ export default class CampaignStepOneScreen extends Component {
                 onChangeText={(text) => this.setState({ rewardAmt: text })}
                 style={[styles.inputStyle]}
                 placeholder="Reward Amount"
+                underlineColorAndroid='transparent'
               />
             </View>
             <View style={[styles.inputContainer]}>
@@ -143,6 +145,7 @@ export default class CampaignStepOneScreen extends Component {
                 onChangeText={(text) => this.setState({ rewardDetail: text })}
                 style={[styles.inputStyle]}
                 placeholder="Reward Details"
+                underlineColorAndroid='transparent'
               />
               <Text style={[styles.inputChar]}>500/500</Text>
             </View>

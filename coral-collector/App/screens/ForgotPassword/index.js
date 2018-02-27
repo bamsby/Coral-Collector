@@ -40,8 +40,10 @@ export default class ForgotPswdScreen extends Component {
             <View style={[styles.inputField]}>
               <TextInput
                 onChangeText={(text) => this.setState({ email: text })}
-                value={this.state.email}
+                placeholder={this.state.email}
                 style={[styles.inputStyle]}
+                placeholderTextColor='#fff'
+                underlineColorAndroid='transparent'
               />
             </View>
 

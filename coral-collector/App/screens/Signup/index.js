@@ -41,31 +41,39 @@ export default class SignupScreen extends Component {
             <View style={[styles.inputField]}>
               <TextInput
                 onChangeText={(text) => this.setState({ fullname: text })}
-                value={this.state.fullname}
+                placeholder={this.state.fullname}
                 style={[styles.inputStyle]}
+                placeholderTextColor="#fff"
+                underlineColorAndroid='transparent'
               />
             </View>
 
             <View style={[styles.inputField]}>
               <TextInput
                 onChangeText={(text) => this.setState({ email: text })}
-                value={this.state.email}
+                placeholder={this.state.email}
                 style={[styles.inputStyle]}
+                placeholderTextColor="#fff"
+                underlineColorAndroid='transparent'
               />
             </View>
 
             <View style={[styles.inputField]}>
               <TextInput
                 onChangeText={(text) => this.setState({ pswd: text })}
-                value={this.state.pswd}
+                placeholder={this.state.pswd}
                 style={[styles.inputStyle]}
+                placeholderTextColor="#fff"
+                underlineColorAndroid='transparent'
               />
             </View>
             <View style={[styles.inputField]}>
               <TextInput
                 onChangeText={(text) => this.setState({ rpswd: text })}
-                value={this.state.rpswd}
+                placeholder={this.state.rpswd}
                 style={[styles.inputStyle]}
+                placeholderTextColor="#fff"
+                underlineColorAndroid='transparent'
               />
             </View>
 
@@ -79,7 +87,7 @@ export default class SignupScreen extends Component {
             />
 
             <View style={[styles.btnGrp]}>
-              <Touchable style={[styles.red, styles.btnTouchable]} onPress={() => Actions.acctsetting()}>
+              <Touchable style={[styles.red, styles.btnTouchable ]} onPress={() => Actions.home()}>
                 <Text style={styles.btnText}>SIGN UP</Text>
               </Touchable>
             </View>

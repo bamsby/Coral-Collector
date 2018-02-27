@@ -23,7 +23,7 @@ export default class RecyclingDriveCommentScreen extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      haveUpdates: true
+      haveUpdates: false
     };
   }
 
@@ -61,7 +61,8 @@ export default class RecyclingDriveCommentScreen extends Component {
                   <View style={[styles.addUpdate]}>
                     <TextInput
                       placeholder="add your comment"
-                      style={{ height: 57, backgroundColor: '#dedede', paddingHorizontal: 15 }}
+                      style={{height: 77, backgroundColor:'#dedede', paddingHorizontal: 15}}
+                      underlineColorAndroid='transparent'
                     />
                     <Text style={[styles.inputChar]}>500/500</Text>
                     <Touchable style={[styles.green, styles.btnTouchable]}>
@@ -71,7 +72,9 @@ export default class RecyclingDriveCommentScreen extends Component {
                   <View style={[styles.commentList]}>
                     <View style={[styles.list]}>
                       <View style={[styles.mediaContainer]}>
-                        <View style={[styles.media]} />
+                        <View style={[styles.media]} >
+                          <Image source={require('../../../../assets/images/profile.png')} />
+                        </View>
                       </View>
                       <View style={[styles.textContainer]}>
                         <Text style={[styles.title]}>JANE</Text>
@@ -86,7 +89,8 @@ export default class RecyclingDriveCommentScreen extends Component {
                         <Text style={[styles.time]}>3 days ago</Text>
                       </View>
                       <View style={[styles.textContainer]}>
-                        <Text style={[styles.title]}>JANE <Text style={[styles.labelText, styles.orange]}>OWNER</Text></Text>
+                        <Text style={[styles.title]}>JANE <Text
+                          style={[styles.labelText, styles.orange]}>OWNER</Text></Text>
                         <Text style={[styles.commentText]}>
                           Lorem ipsum dolor sit amet, quo te copiosae periculis. Qui no animal voluptua vituperata, ut nec vitae tantas eirmod. An agam purto dissentiunt est. Option elaboraret eam in, his at quaeque legendos. Pri no eloquentiam consectetuer. Cu argumentum mediocritatem pro.
                         </Text>
@@ -126,15 +130,16 @@ export default class RecyclingDriveCommentScreen extends Component {
                 <View style={[styles.noUpdateView]}>
                   <View style={[styles.noUpdateTextContainer]}>
                     <Text style={[styles.noUpdateText]}>Looks like you haven’t got or added any comments</Text>
-                    <View style={[styles.triangleContainer]} >
-                      <View style={[styles.triangle]} />
-                    </View>
+                  </View>
+                  <View style={[styles.triangleContainer]}>
+                    <View style={[styles.triangle]} />
                   </View>
                   <View style={[styles.noUpdateTextAreaContainer]}>
                     <TextInput
                       placeholder="Update your comments"
                       style={[styles.noUpdateTextArea]}
                       multiline
+                      underlineColorAndroid='transparent'
                     />
                   </View>
                   <Text style={[styles.inputChar]}>500/500</Text>

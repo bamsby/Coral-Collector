@@ -16,6 +16,8 @@ import Touchable from 'react-native-platform-touchable';
 
 import styles from './style';
 import MenuHeader from '../partials/MenuHeader/index';
+import Drawer from 'react-native-drawer'
+import SidebarScreen from '../Sidebar/index'
 
 export default class AccountSettingScreen extends Component {
   constructor(props) {
@@ -28,10 +30,31 @@ export default class AccountSettingScreen extends Component {
     };
   }
 
+  openSideBar = () => {
+    this._drawer.open()
+  };
+
   render() {
     return (
+      <Drawer
+        ref={(ref) => this._drawer = ref}
+        content={<SidebarScreen active="settings"/>}
+        side="left"
+        acceptTap={true}
+        tapToClose={true}
+        acceptDoubleTap
+        acceptPan
+        captureGestures={true}
+        tweenDuration={200}
+        tweenEasing={'linear'}
+        panThreshold={0.08}
+        openDrawerOffset={(viewport) => {
+                    return 100
+                }}
+        closedDrawerOffset={0}
+      >
       <View style={styles.container}>
-        <MenuHeader menuTitle="ACCOUNT SETTINGS" />
+        <MenuHeader menuTitle="ACCOUNT SETTINGS" openSidebar={this.openSideBar} />
 
         <View style={[styles.body]}>
           <View style={[styles.form]}>
@@ -40,6 +63,7 @@ export default class AccountSettingScreen extends Component {
                 onChangeText={(text) => this.setState({ email: text })}
                 value={this.state.email}
                 style={[styles.inputStyle]}
+                underlineColorAndroid='transparent'
               />
             </View>
 
@@ -57,6 +81,7 @@ export default class AccountSettingScreen extends Component {
                 onChangeText={(text) => this.setState({ npswd: text })}
                 value={this.state.npswd}
                 style={[styles.inputStyle]}
+                underlineColorAndroid='transparent'
               />
             </View>
 
@@ -65,6 +90,7 @@ export default class AccountSettingScreen extends Component {
                 onChangeText={(text) => this.setState({ rpswd: text })}
                 value={this.state.rpswd}
                 style={[styles.inputStyle]}
+                underlineColorAndroid='transparent'
               />
             </View>
 
@@ -73,6 +99,7 @@ export default class AccountSettingScreen extends Component {
                 onChangeText={(text) => this.setState({ cpswd: text })}
                 value={this.state.cpswd}
                 style={[styles.inputStyle]}
+                underlineColorAndroid='transparent'
               />
             </View>
 
@@ -89,6 +116,7 @@ export default class AccountSettingScreen extends Component {
         </View>
 
       </View>
+      </Drawer>
     );
   }
 }

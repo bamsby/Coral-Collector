@@ -27,7 +27,7 @@ export default class CampaignFinalStepScreen extends Component {
   render() {
     return (
       <ScrollView style={styles.container}>
-        <GreenMenuHeader menuTitle="CREATE YOUR CAMPAIGN" />
+        <GreenMenuHeader menuTitle="CREATE YOUR CAMPAIGN" lastPage/>
         <View style={[styles.stepIndicatorContainer]}>
           <FontAwesome name="circle" size={10} color="#3dbb69" style={[styles.circleIcon]} />
           <FontAwesome name="circle" size={10} color="#3dbb69" style={[styles.circleIcon]} />

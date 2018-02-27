@@ -48,11 +48,11 @@ export default StyleSheet.create({
     borderLeftColor: 'transparent',
   },
   triangleContainer: {
-    position: 'absolute',
-    bottom: -10,
+    // position: 'absolute',
+    // bottom: 0,
     justifyContent: 'center',
-    left: 0,
-    right: 0,
+    // left: 0,
+    // right: 0,
     alignItems: 'center'
   },
   noUpdateTextAreaContainer: {

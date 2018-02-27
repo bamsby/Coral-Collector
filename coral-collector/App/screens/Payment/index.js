@@ -17,8 +17,9 @@ import { FontAwesome } from '@expo/vector-icons';
 import QRCode from 'react-native-qrcode';
 import Modal from 'react-native-modal';
 import Touchable from 'react-native-platform-touchable';
-import styles from './style';
-import GreenMenuHeader from '../partials/GreenHeader/index';
+import {Actions} from 'react-native-router-flux'
+import styles from './style'
+import GreenMenuHeader from '../partials/GreenHeader/index'
 
 export default class PaymentScreen extends Component {
   constructor(props) {
@@ -47,7 +48,8 @@ export default class PaymentScreen extends Component {
             fgColor='white' />
         </View>
 
-        <Text style={{ marginTop: 30, color: 'red', textAlign: 'center' }} onPress={() => this.openModal()}>For test: Open Modal</Text>
+        <Text style={{marginTop: 30, color:'red', textAlign: 'center'}} onPress={() => this.openModal()}>For test: Open Modal</Text>
+        <Text style={{marginTop: 30, color:'red', textAlign: 'center'}} onPress={() => Actions.transferhistory()}>For test: Transfer history</Text>
         <Modal isVisible={this.state.modalVisible}>
           <View style={[styles.modalContent]}>
             <Text style={[styles.modalTitle]}>ALICE</Text>
