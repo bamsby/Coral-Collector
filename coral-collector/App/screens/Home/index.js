@@ -1,9 +1,5 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- * @flow
- */
-
+import { YellowBox } from 'react-native';
+import _ from 'lodash';
 import React, {Component} from 'react';
 import {
   StyleSheet,
@@ -12,19 +8,60 @@ import {
   Image,
   TextInput,
   ScrollView,
-  Button
+  Button,
+  ListView
 } from 'react-native';
 import Touchable from 'react-native-platform-touchable';
 import { FontAwesome } from '@expo/vector-icons';
-import styles from './style'
+import styles from './style';
 import * as Progress from 'react-native-progress';
 import Drawer from 'react-native-drawer'
 import SidebarScreen from '../Sidebar/index'
 import Modal from "react-native-modal";
 import ChipField from '../partials/chips';
-import {Actions} from 'react-native-router-flux'
+import {Actions} from 'react-native-router-flux';
+import { connect } from 'react-redux';
 
-export default class HomeScreen extends Component {
+import { campaignFetch } from '../../../actions';
+import ListItem from './ListItem';
+
+YellowBox.ignoreWarnings(['Setting a timer']);
+const _console = _.clone(console);
+console.warn = message => {
+  if (message.indexOf('Setting a timer') <= -1) {
+    _console.warn(message);
+  }
+};
+
+class HomeScreen extends Component {
+  componentWillMount() {
+    this.props.campaignFetch();
+
+    this.createDataSource(this.props);
+  }
+
+  componentWillReceiveProps(nextProps) {
+    // nextProps are the next set of props that this component
+    // will be rendered with
+    // this.props is still the old set of props
+
+    this.createDataSource(nextProps);
+  }
+
+  createDataSource({ campaigns }) {
+    const ds = new ListView.DataSource({
+      rowHasChanged: (r1, r2) => r1 !== r2
+    });
+
+    this.dataSource = ds.cloneWithRows(campaigns);
+  }
+
+  renderRow(campaign) {
+    return (
+      <ListItem campaign={campaign} />
+    );
+  }
+
   constructor(props) {
     super(props);
     this.state = {
@@ -193,6 +230,7 @@ export default class HomeScreen extends Component {
   render() {
     const {items} = this.props;
     const {isEnabled, message} = this.state;
+    
     return (
       <Drawer
         ref={(ref) => this._drawer = ref}
@@ -273,135 +311,12 @@ export default class HomeScreen extends Component {
                 <Image source={require('../../../assets/images/filter.png')} style={[styles.filterIcon]}/>
               </Touchable>
             </View>
-            <View style={[styles.card]}>
-              <View style={[styles.row, {marginBottom: 4}]}>
-                <Text style={[styles.cardTitle, styles.OswaldRegular]}>RECYCLING DRIVE</Text>
-                <View style={[styles.row]}>
-                  <Touchable style={[styles.cardTag, styles.yellowTag]}>
-                    <Text style={[styles.cardTagText, styles.OpenSansSemiBold]}>Fund Raising</Text>
-                  </Touchable>
-                  <Touchable style={[styles.cardTag]}>
-                    <Text style={[styles.cardTagText, styles.OpenSansSemiBold]}>Clothes</Text>
-                  </Touchable>
-                  <Touchable style={[styles.cardTag]}>
-                    <Text style={[styles.cardTagText, styles.OpenSansSemiBold]}>Newspaper</Text>
-                  </Touchable>
-                </View>
-              </View>
-              <View style={[styles.subCard]}>
-                <View style={[styles.galleryContainer]}></View>
-                <View style={[styles.cardTextContainer]}>
-                  <View style={[styles.row, {marginVertical: 8}]}>
-                    <Image source={require('../../../assets/images/RC.png')}/>
-                    <Text style={[styles.cardText]}>Kolam Ayer Whampoa South RC</Text>
-                  </View>
-                  <View style={[styles.row, {marginVertical: 8}]}>
-                    <Image source={require('../../../assets/images/locationpin.png')}/>
-                    <Text style={[styles.cardText]}>Block 47A, Link Building, Bendemeer Road</Text>
-                  </View>
-                  <View style={[styles.row, {marginVertical: 8}]}>
-                    <Image source={require('../../../assets/images/calendar.png')}/>
-                    <Text style={[styles.cardText]}>2 Feb 2018, 9.30 am - 12.30 am</Text>
-                  </View>
-                </View>
 
-                <Text style={[styles.progressIntroText]}>
-                  Collecting paper, clothing, plastic, cans, metal, glass and empty drink packets. All collectable exchange for CASH!
-                </Text>
-                <View>
-                  <Progress.Bar
-                    progress={0.79}
-                    width={null}
-                    unfilledColor="#000"
-                    borderWidth={0}
-                    borderRadius={0}
-                    color="#3bb866"
-                    height={32.5}
-                  />
-                  <Text style={[styles.progressText]}>79% Pledged</Text>
-                </View>
-
-                <View style={[styles.cardFooter]}>
-                  <View style={[styles.li]}>
-                    <Text style={[styles.p]}>5000KG</Text>
-                    <Text style={[styles.span, styles.orange]}> Goal</Text>
-                  </View>
-                  <View style={[styles.li, styles.border]}>
-                    <Text style={[styles.p]}>30</Text>
-                    <Text style={[styles.span, styles.red]}> Days To Go</Text>
-                  </View>
-                  <View style={[styles.li]}>
-                    <Text style={[styles.p]}>125</Text>
-                    <Text style={[styles.span, styles.green]}> Backers</Text>
-                  </View>
-                </View>
-              </View>
-            </View>
-
-            <View style={[styles.card]}>
-              <View style={[styles.row, {marginBottom: 4}]}>
-                <Text style={[styles.cardTitle, styles.OswaldRegular]}>DONATION DRIVE</Text>
-                <View style={[styles.row]}>
-                  <Touchable style={[styles.cardTag, styles.yellowTag]}>
-                    <Text style={[styles.cardTagText, styles.OpenSansSemiBold]}>Donation</Text>
-                  </Touchable>
-                  <Touchable style={[styles.cardTag]}>
-                    <Text style={[styles.cardTagText, styles.OpenSansSemiBold]}>Books</Text>
-                  </Touchable>
-                  <Touchable style={[styles.cardTag]}>
-                    <Text style={[styles.cardTagText, styles.OpenSansSemiBold]}>Uniform</Text>
-                  </Touchable>
-                </View>
-              </View>
-              <View style={[styles.subCard]}>
-                <View style={[styles.galleryContainer]}></View>
-                <View style={[styles.cardTextContainer]}>
-                  <View style={[styles.row, {marginVertical: 8}]}>
-                    <Image source={require('../../../assets/images/RC.png')}/>
-                    <Text style={[styles.cardText]}>Kolam Ayer Whampoa South RC</Text>
-                  </View>
-                  <View style={[styles.row, {marginVertical: 8}]}>
-                    <Image source={require('../../../assets/images/locationpin.png')}/>
-                    <Text style={[styles.cardText]}>Block 47A, Link Building, Bendemeer Road</Text>
-                  </View>
-                  <View style={[styles.row, {marginVertical: 8}]}>
-                    <Image source={require('../../../assets/images/calendar.png')}/>
-                    <Text style={[styles.cardText]}>2 Feb 2018, 9.30 am - 12.30 am</Text>
-                  </View>
-                </View>
-
-                <Text style={[styles.progressIntroText]}>
-                  Collecting paper, clothing, plastic, cans, metal, glass and empty drink packets. All collectable exchange for CASH!
-                </Text>
-                <View>
-                  <Progress.Bar
-                    progress={0.79}
-                    width={null}
-                    unfilledColor="#000"
-                    borderWidth={0}
-                    borderRadius={0}
-                    color="#3bb866"
-                    height={32.5}
-                  />
-                  <Text style={[styles.progressText]}>79% Pledged</Text>
-                </View>
-
-                <View style={[styles.cardFooter]}>
-                  <View style={[styles.li]}>
-                    <Text style={[styles.p]}>5000KG</Text>
-                    <Text style={[styles.span, styles.orange]}> Goal</Text>
-                  </View>
-                  <View style={[styles.li, styles.border]}>
-                    <Text style={[styles.p]}>30</Text>
-                    <Text style={[styles.span, styles.red]}> Days To Go</Text>
-                  </View>
-                  <View style={[styles.li]}>
-                    <Text style={[styles.p]}>125</Text>
-                    <Text style={[styles.span, styles.green]}> Backers</Text>
-                  </View>
-                </View>
-              </View>
-            </View>
+            <ListView
+              enableEmptySections
+              dataSource={this.dataSource}
+              renderRow={this.renderRow}
+            />
           </View>
 
           <Modal isVisible={this.state.modalVisible}>
@@ -496,4 +411,12 @@ export default class HomeScreen extends Component {
   }
 }
 
+const mapStateToProps = state => {
+  const campaigns = _.map(state.campaigns, (val, uid) => {
+    return { ...val, uid };
+  });
 
+  return { campaigns };
+};
+
+export default connect(mapStateToProps, { campaignFetch })(HomeScreen);

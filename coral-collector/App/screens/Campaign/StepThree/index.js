@@ -18,11 +18,13 @@ import Touchable from 'react-native-platform-touchable';
 import { FontAwesome } from '@expo/vector-icons';
 import Modal from 'react-native-modal';
 import { Actions } from 'react-native-router-flux';
+import { connect } from 'react-redux';
 
 import styles from './style';
 import GreenMenuHeader from '../../partials/GreenHeader/index';
+import { campaignCreate, campaignUpdate } from '../../../../actions';
 
-export default class CampaignStepOneScreen extends Component {
+class CampaignStepThreeScreen extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -40,6 +42,13 @@ export default class CampaignStepOneScreen extends Component {
 
   closeModal() {
     this.setState({ modalVisible:false });
+  }
+
+  onButtonPress() {
+    const { title, description } = this.props;
+
+    this.props.campaignCreate({ title, description });
+    Actions.champaignfinalstep();
   }
 
   render() {
@@ -116,7 +125,7 @@ export default class CampaignStepOneScreen extends Component {
           <Touchable style={[styles.greenBtn, styles.btnTouchable, { marginHorizontal: 10 }]} onPress={() => Actions.pop()}>
             <Text style={styles.btnText}>PREVIOUS</Text>
           </Touchable>
-          <Touchable style={[styles.greenBtn, styles.btnTouchable, { marginHorizontal: 10 }]} onPress={() => Actions.champaignfinalstep()}>
+          <Touchable style={[styles.greenBtn, styles.btnTouchable, { marginHorizontal: 10 }]} onPress={this.onButtonPress.bind(this)}>
             <Text style={styles.btnText}>NEXT</Text>
           </Touchable>
         </View>
@@ -165,3 +174,13 @@ export default class CampaignStepOneScreen extends Component {
     );
   }
 }
+
+const mapStateToProps = (state) => {
+  const { title, description } = state.campaignForm;
+
+  return { title, description };
+};
+
+export default connect(mapStateToProps, {
+  campaignUpdate, campaignCreate
+})(CampaignStepThreeScreen);

@@ -1,9 +1,3 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- * @flow
- */
-
 import React, { Component } from 'react';
 import {
   StyleSheet,
@@ -13,6 +7,7 @@ import {
   TextInput,
   ScrollView
 } from 'react-native';
+import { connect } from 'react-redux';
 import Touchable from 'react-native-platform-touchable';
 import { FontAwesome } from '@expo/vector-icons';
 import { Actions } from 'react-native-router-flux';
@@ -20,8 +15,9 @@ import { Select } from 'teaset';
 
 import styles from './style';
 import GreenMenuHeader from '../../partials/GreenHeader/index';
+import { campaignUpdate } from '../../../../actions';
 
-export default class CampaignStepOneScreen extends Component {
+class CampaignStepOneScreen extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -29,15 +25,13 @@ export default class CampaignStepOneScreen extends Component {
       campaignDetails: 'Your Campaign Details',
       campaignGoal: 'Your Campaign Goals',
       items: [
-      'Apple',
-      'Banana',
-      'Cherry',
-      'Durian',
-      'Filbert',
-      'Grape',
-      'Hickory',
-      'Lemon',
-      'Mango',
+      'Clothes',
+      'Newspaper',
+      'Bottles',
+      'Books',
+      'Uniform',
+      'Electronics',
+      'Others'
     ],
       activeQty:'kg'
     }
@@ -61,10 +55,11 @@ export default class CampaignStepOneScreen extends Component {
         <View style={[styles.form]}>
           <View style={[styles.inputContainer]}>
             <TextInput
-              onChangeText={(text) => this.setState({ campaignTitle: text })}
               style={[styles.inputStyle]}
               placeholder="Your Campaign Title"
-              placeholderTextColor='#5a5a5a'
+              value={this.props.title}
+              onChangeText={value => this.props.campaignUpdate({ prop: 'title', value })}
+              placeholderTextColor='#9c9c9c'
               underlineColorAndroid='transparent'
             />
             <Text style={[styles.inputChar]}>0/10</Text>
@@ -72,11 +67,12 @@ export default class CampaignStepOneScreen extends Component {
 
           <View style={[styles.inputContainer]}>
             <TextInput
-              onChangeText={(text) => this.setState({ campaignDetails: text })}
               style={[styles.inputStyle, { height: 82.5, paddingTop: 16 }]}
               placeholder="Your Campaign Details"
+              value={this.props.description}
+              onChangeText={value => this.props.campaignUpdate({ prop: 'description', value })}
               multiline={true}
-              placeholderTextColor='#5a5a5a'
+              placeholderTextColor='#9c9c9c'
               underlineColorAndroid='transparent'
             />
             <Text style={[styles.inputChar]}>0/30</Text>
@@ -90,7 +86,7 @@ export default class CampaignStepOneScreen extends Component {
               items={this.state.items}
               placeholder='Type of Recyclables'
               onSelected={(item, index) => this.setState({itemValue: item})}
-              placeholderTextColor="#5a5a5a"
+              placeholderTextColor="#9c9c9c"
             />
           </View>
           <View style={[styles.inputContainer]}>
@@ -98,7 +94,7 @@ export default class CampaignStepOneScreen extends Component {
               onChangeText={(text) => this.setState({ campaignDetails: text })}
               style={[styles.inputStyle]}
               placeholder="Your Goal (Eg. 5000 Kg of materials)"
-              placeholderTextColor='#5a5a5a'
+              placeholderTextColor='#9c9c9c'
               underlineColorAndroid='transparent'
             />
           </View>
@@ -115,24 +111,9 @@ export default class CampaignStepOneScreen extends Component {
             >
               <Text style={[styles.btnText]}>PCS</Text>
             </Touchable>
-            <Touchable style={[styles.chbxBtn, this.state.activeQty === 's' ? styles.active : null]}
-                       onPress={() => this.changeQty('s')}
-            >
-              <Text style={[styles.btnText]}>S</Text>
-            </Touchable>
-            <Touchable style={[styles.chbxBtn, this.state.activeQty === 'km' ? styles.active : null]}
-                       onPress={() => this.changeQty('km')}
-            >
-              <Text style={[styles.btnText]}>KM</Text>
-            </Touchable>
-            <Touchable style={[styles.chbxBtn, this.state.activeQty === 'dash' ? styles.active : null, {marginRight: 0}]}
-                       onPress={() => this.changeQty('dash')}
-            >
-              <Text style={[styles.btnText]}>-</Text>
-            </Touchable>
           </View>
 
-          <Touchable style={[styles.btnTouchable, styles.greenBtn]} onPress={() => Actions.champaignsteptwo()}>
+          <Touchable style={[styles.btnTouchable, styles.greenBtn]} onPress={()=>Actions.champaignsteptwo()}>
             <Text style={[styles.btnText]}>NEXT</Text>
           </Touchable>
         </View>
@@ -140,3 +121,11 @@ export default class CampaignStepOneScreen extends Component {
     );
   }
 }
+
+const mapStateToProps = (state) => {
+  const { title, description } = state.campaignForm;
+
+  return { title, description };
+};
+
+export default connect(mapStateToProps, { campaignUpdate })(CampaignStepOneScreen);

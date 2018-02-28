@@ -14,7 +14,7 @@ export default StyleSheet.create({
     backgroundColor: 'rgba(50, 46, 63, 0.75);',
     // flex: 1,
     position: 'absolute',
-    top: 0,
+    top: 40,
     right: 0,
     left: 0,
     // bottom: 0,
@@ -23,7 +23,11 @@ export default StyleSheet.create({
     paddingHorizontal: 23,
     paddingBottom: 16,
     paddingTop: 8,
-    // alignItems: 'center'
+  },
+  errorTextStyle: {
+    fontSize: 12,
+    alignSelf: 'center',
+    color: 'red'
   },
   logo: {
     height: 65,

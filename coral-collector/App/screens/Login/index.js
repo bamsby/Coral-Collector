@@ -6,27 +6,54 @@
 
 import React, { Component } from 'react';
 import {
-  StyleSheet,
   Text,
   View,
   Image,
   TextInput,
   ScrollView
 } from 'react-native';
+import { connect } from 'react-redux';
 import Touchable from 'react-native-platform-touchable';
 import { FontAwesome } from '@expo/vector-icons';
 import { Actions } from 'react-native-router-flux';
 
 import styles from './style';
+import { emailChanged, passwordChanged, loginUser } from '../../../actions';
+import { Spinner } from '../../common';
 
-export default class LoginScreen extends Component {
+
+class LoginScreen extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      uname: 'Username / email',
-      pswd: 'Password'
+      //uname: 'Username / email',
+      //pswd: 'Password'
     };
   }
+
+  onEmailChange(text) {
+    this.props.emailChanged(text);
+  }
+  onPasswordChange(text) {
+    this.props.passwordChanged(text);
+  }
+
+  onSignInButtonPress() {
+    const { email, password } = this.props;
+    this.props.loginUser({ email, password });
+  }
+
+  renderSignInButton() {
+    if (this.props.loading) {
+      return <Spinner size="large" />;
+    }
+    return (
+      <Touchable style={[styles.orange, styles.btnTouchable]} onPress={this.onSignInButtonPress.bind(this)}>
+        <Text style={styles.btnText}>SIGN IN</Text>
+      </Touchable>
+    );
+  }
+
   render() {
     return (
       <View style={styles.container}>
@@ -38,32 +65,31 @@ export default class LoginScreen extends Component {
           <View style={[styles.form]}>
             <View style={[styles.inputField]}>
               <TextInput
-                onChangeText={(text) => this.setState({ uname: text })}
-                placeholder={this.state.uname}
+                placeholder="Email"
+                onChangeText={this.onEmailChange.bind(this)}
                 style={[styles.inputStyle]}
-                placeholderTextColor="#fff"
-                underlineColorAndroid='transparent'
               />
             </View>
 
             <View style={[styles.inputField]}>
               <TextInput
-                onChangeText={(text) => this.setState({ pswd: text })}
-                placeholder={this.state.pswd}
+                placeholder="Password"
+                onChangeText={this.onPasswordChange.bind(this)}
                 style={[styles.inputStyle]}
-                placeholderTextColor="#fff"
-                underlineColorAndroid='transparent'
+                secureTextEntry
               />
             </View>
 
             <View style={[styles.btnGrp]}>
-              <Touchable style={[styles.orange, styles.btnTouchable]} onPress={() => Actions.home()}>
-                <Text style={styles.btnText}>SIGN IN</Text>
-              </Touchable>
+              {this.renderSignInButton()}
               <Touchable style={[styles.red, styles.btnTouchable]} onPress={() => Actions.signup()}>
                 <Text style={styles.btnText}>SIGN UP</Text>
               </Touchable>
             </View>
+
+            <Text style={[styles.errorTextStyle]}>
+              {this.props.error}
+            </Text>
 
             <View style={[styles.socialBtnGrp]}>
               <Touchable style={[styles.fb, styles.socialBtnTouchable]}>
@@ -87,3 +113,13 @@ export default class LoginScreen extends Component {
     );
   }
 }
+
+const mapStateToProps = ({ auth }) => {
+  const { email, password, error, loading } = auth;
+
+  return { email, password, error, loading };
+};
+
+export default connect(mapStateToProps, {
+  emailChanged, passwordChanged, loginUser
+})(LoginScreen);
