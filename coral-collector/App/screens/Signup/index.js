@@ -1,9 +1,3 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- * @flow
- */
-
 import React, { Component } from 'react';
 import {
   StyleSheet,
@@ -12,22 +6,56 @@ import {
   Image,
   TextInput
 } from 'react-native';
+import { connect } from 'react-redux';
 import Touchable from 'react-native-platform-touchable';
 import { Checkbox } from 'teaset';
 import { FontAwesome } from '@expo/vector-icons';
 import { Actions } from 'react-native-router-flux';
-import styles from './style';
 
-export default class SignupScreen extends Component {
+import styles from './style';
+import { emailChanged, passwordChanged, newPasswordChanged, signupUser, passwordDifferent } from '../../../actions';
+import { Spinner } from '../../common';
+
+class SignupScreen extends Component {
   constructor(props) {
     super(props);
     this.state = {
       fullname: 'full name',
       pswd: 'password',
       email: 'email',
-      rpswd: 're-enter password'
+      rpswd: 're-enter password',
+      checked: true
     };
   }
+
+  onEmailChange(text) {
+    this.props.emailChanged(text);
+  }
+  onPasswordChange(text) {
+    this.props.passwordChanged(text);
+  }
+  onNewPasswordChange(text) {
+    this.props.newPasswordChanged(text);
+  }
+  onSignUpButtonPress() {
+    const { email, password } = this.props;
+    
+    if(this.props.password != this.props.newPassword)
+      this.props.passwordDifferent();
+    else
+      this.props.signupUser({ email, password });
+  }
+  renderSignUpButton() {
+    if (this.props.loading) {
+      return <Spinner size="large" />;
+    }
+    return (
+      <Touchable style={[styles.red, styles.btnTouchable]} onPress= {this.onSignUpButtonPress.bind(this)}>
+        <Text style={styles.btnText}>SIGN UP</Text>
+      </Touchable>
+    );
+  }
+
   render() {
     return (
       <View style={styles.container}>
@@ -43,37 +71,34 @@ export default class SignupScreen extends Component {
                 onChangeText={(text) => this.setState({ fullname: text })}
                 placeholder={this.state.fullname}
                 style={[styles.inputStyle]}
-                placeholderTextColor="#fff"
-                underlineColorAndroid='transparent'
               />
             </View>
 
             <View style={[styles.inputField]}>
               <TextInput
-                onChangeText={(text) => this.setState({ email: text })}
-                placeholder={this.state.email}
+                placeholder="Email"
+                value={this.props.email}
+                onChangeText={this.onEmailChange.bind(this)}                
                 style={[styles.inputStyle]}
-                placeholderTextColor="#fff"
-                underlineColorAndroid='transparent'
               />
             </View>
 
             <View style={[styles.inputField]}>
               <TextInput
-                onChangeText={(text) => this.setState({ pswd: text })}
-                placeholder={this.state.pswd}
+                placeholder="Password"
+                value={this.props.password}
+                onChangeText={this.onPasswordChange.bind(this)}
                 style={[styles.inputStyle]}
-                placeholderTextColor="#fff"
-                underlineColorAndroid='transparent'
+                secureTextEntry                
               />
             </View>
             <View style={[styles.inputField]}>
               <TextInput
-                onChangeText={(text) => this.setState({ rpswd: text })}
-                placeholder={this.state.rpswd}
+                placeholder="Re-enter Password"
+                value={this.props.newPassword}
+                onChangeText={this.onNewPasswordChange.bind(this)}
                 style={[styles.inputStyle]}
-                placeholderTextColor="#fff"
-                underlineColorAndroid='transparent'
+                secureTextEntry
               />
             </View>
 
@@ -87,10 +112,12 @@ export default class SignupScreen extends Component {
             />
 
             <View style={[styles.btnGrp]}>
-              <Touchable style={[styles.red, styles.btnTouchable ]} onPress={() => Actions.home()}>
-                <Text style={styles.btnText}>SIGN UP</Text>
-              </Touchable>
+              {this.renderSignUpButton()}              
             </View>
+
+            <Text style={[styles.errorTextStyle]}>
+              {this.props.error}
+            </Text>
 
             <View style={[styles.rowFlex]}>
               <Text style={[styles.forgotPswdLink]}>By signing up, you agree to our
@@ -104,3 +131,13 @@ export default class SignupScreen extends Component {
     );
   }
 }
+
+const mapStateToProps = ({ auth }) => {
+  const { email, password, newPassword, error, loading } = auth;
+
+  return { email, password, newPassword, error, loading };
+};
+
+export default connect(mapStateToProps, {
+  emailChanged, passwordChanged, newPasswordChanged, signupUser, passwordDifferent
+})(SignupScreen);

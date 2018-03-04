@@ -36,6 +36,7 @@ export default class App extends React.Component {
       'open-sans-semibold': require('./assets/fonts/OpenSans-SemiBold.ttf'),
       'gotham-round': require('./assets/fonts/GothamRoundedLight.ttf'),
     });
+
     this.setState({ fontLoaded: true });
   }
   render() {

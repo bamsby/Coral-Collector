@@ -115,5 +115,10 @@ export default StyleSheet.create({
     position: 'absolute',
     top: 30,
     left: 10
+  },
+  errorTextStyle: {
+    fontSize: 12,
+    alignSelf: 'center',
+    color: 'red'
   }
 });

@@ -6,12 +6,20 @@ import {
   Image,
   TextInput
 } from 'react-native';
+import { connect } from 'react-redux';
 import Touchable from 'react-native-platform-touchable';
 import styles from './style'
 import {FontAwesome} from '@expo/vector-icons';
-import {Actions} from 'react-native-router-flux'
+import {Actions} from 'react-native-router-flux';
+import { logoutUser } from '../../../actions';
 
-export default class SidebarScreen extends Component {
+
+class SidebarScreen extends Component {
+
+  onLogOutButtonPress() {
+    this.props.logoutUser();
+  }
+
   render() {
     return (
       <View style={[styles.container]}>
@@ -71,7 +79,13 @@ export default class SidebarScreen extends Component {
           </Touchable>
         </View>
 
-        <Touchable onPress={() => Actions.pop()}>
+        {/* <Touchable onPress={() => Actions.pop()}>
+          <View style={[styles.logoutContainer]}>
+            <Image source={require('../../../assets/images/sidebarIcons/logout.png')}/>
+            <Text style={[styles.listText]}>Logout</Text>
+          </View>
+        </Touchable> */}
+        <Touchable onPress={this.onLogOutButtonPress.bind(this)}>
           <View style={[styles.logoutContainer]}>
             <Image source={require('../../../assets/images/sidebarIcons/logout.png')}/>
             <Text style={[styles.listText]}>Logout</Text>
@@ -81,3 +95,13 @@ export default class SidebarScreen extends Component {
     )
   }
 }
+
+const mapStateToProps = ({ auth }) => {
+  const { email, password } = auth;
+
+  return { email, password };
+};
+
+export default connect(mapStateToProps, {
+  logoutUser
+})(SidebarScreen);

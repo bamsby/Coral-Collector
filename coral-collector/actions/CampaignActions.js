@@ -10,14 +10,15 @@ import {
 import { RNS3 } from 'react-native-aws3';
 
 export const campaignUpdate = ({ prop, value }) => {
-  
+  console.log(prop);
+  console.log(value);
   return {
     type: CAMPAIGN_UPDATE,
     payload: { prop, value }
   };
 };
 
-export const campaignCreate = ({ title, description, imageUri }) => {
+export const campaignCreate = ({ title, description, imageUri, recycleType, date, time, campaignType, goal, unit, location }) => {
   // const { currentUser } = firebase.auth();
 
   const file = {
@@ -26,8 +27,7 @@ export const campaignCreate = ({ title, description, imageUri }) => {
     type: "image/png"
   }
 
-  var replaced = title.replace(/ /g, '+')
-  console.log("title: " + replaced);
+  console.log('Units in Create: ' + unit);
 
   const options = {
     keyPrefix: "campaigns/",
@@ -46,7 +46,7 @@ export const campaignCreate = ({ title, description, imageUri }) => {
 
   return (dispatch) => {
     firebase.database().ref(`/users/campaigns`)
-      .push({ title, description })
+      .push({ title, description, recycleType, date, time, campaignType, goal, unit, location })
       .then(() => {
         dispatch({ type: CAMPAIGN_CREATE });
       });

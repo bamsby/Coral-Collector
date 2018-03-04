@@ -39,9 +39,9 @@ class CampaignStepThreeScreen extends Component {
   }
 
   onButtonPress() {
-    const { title, description, imageUri } = this.props;
+    const { title, description, imageUri, recycleType, date, time, campaignType, goal, unit, location } = this.props;
 
-    this.props.campaignCreate({ title, description, imageUri });
+    this.props.campaignCreate({ title, description, imageUri, recycleType, date, time, campaignType, goal, unit, location });
     Actions.champaignfinalstep();
   }
 
@@ -170,9 +170,9 @@ class CampaignStepThreeScreen extends Component {
 }
 
 const mapStateToProps = (state) => {
-  const { title, description, imageUri } = state.campaignForm;
+  const { title, description, imageUri, recycleType, date, time, campaignType, goal, unit, location } = state.campaignForm;
 
-  return { title, description, imageUri };
+  return { title, description, imageUri, recycleType, date, time, campaignType, goal, unit, location };
 };
 
 export default connect(mapStateToProps, {

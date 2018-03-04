@@ -5,14 +5,15 @@ import {
   View,
   Image,
   TextInput,
-  ScrollView
+  ScrollView,
+  Picker
 } from 'react-native';
 import { connect } from 'react-redux';
 import Touchable from 'react-native-platform-touchable';
 import {FontAwesome} from '@expo/vector-icons';
 import DatePicker from 'react-native-datepicker';
 import {Actions} from 'react-native-router-flux';
-import {Select} from 'teaset';
+// import {Select} from 'teaset';
 import {MapView, ImagePicker} from 'expo';
 import {Marker} from 'react-native-maps';
 import firebase from 'firebase';
@@ -40,8 +41,8 @@ class CampaignStepTwoScreen extends Component {
       ],
       marker: [
         {
-          "latitude": 37.78825,
-          "longitude": -122.4324,
+          "latitude": 1.3521,
+          "longitude": 103.8198,
           "id": 1
         },
       ],
@@ -87,12 +88,12 @@ class CampaignStepTwoScreen extends Component {
               <Text style={{ fontSize: 12.5, fontFamily: 'open-sans-bold', marginRight: 10 }}>Event Date</Text>
               <DatePicker
                 mode="date"
-                date={this.state.date}
+                date={this.props.date}
                 placeholder=" "
                 format="YYYY-MM-DD"
                 confirmBtnText="Confirm"
                 cancelBtnText="Cancel"
-                showIcon={this.state.date!=="" ? false : true}
+                showIcon={this.props.date!=="" ? false : true}
                 iconSource={require('../../../../assets/images/date.png')}
                 customStyles={{
                   dateIcon: {
@@ -106,7 +107,7 @@ class CampaignStepTwoScreen extends Component {
                     borderWidth: 0
                   }
                 }}
-                onDateChange={(date) => { this.setState({ date: date })}}
+                onDateChange={value => this.props.campaignUpdate({ prop: 'date', value })}
               />
             </View>
 
@@ -115,10 +116,10 @@ class CampaignStepTwoScreen extends Component {
               <DatePicker
                 mode="time"
                 placeholder=" "
-                date={this.state.time}
+                date={this.props.time}
                 confirmBtnText="Confirm"
                 cancelBtnText="Cancel"
-                showIcon={this.state.time!=="" ? false : true}
+                showIcon={this.props.time!=="" ? false : true}
                 iconSource={require('../../../../assets/images/time.png')}
                 customStyles={{
                   dateIcon: {
@@ -132,7 +133,7 @@ class CampaignStepTwoScreen extends Component {
                     borderWidth: 0
                   }
                 }}
-                onDateChange={(date) => {this.setState({ time: date })}}
+                onDateChange={value => this.props.campaignUpdate({ prop: 'time', value })}
               />
             </View>
 
@@ -150,6 +151,7 @@ class CampaignStepTwoScreen extends Component {
                     textAlign: 'center'
                 }}
                 underlineColorAndroid='transparent'
+                onChangeText={value => this.props.campaignUpdate({ prop: 'location', value })} 
               />
             </View>
           </View>
@@ -157,8 +159,8 @@ class CampaignStepTwoScreen extends Component {
             <MapView
               style={{ flex: 1 }}
               initialRegion={{
-                latitude: 37.78825,
-                longitude: -122.4324,
+                latitude: 1.3521,
+                longitude: 103.8198,
                 latitudeDelta: 0.0922,
                 longitudeDelta: 0.0421,
               }}
@@ -176,14 +178,16 @@ class CampaignStepTwoScreen extends Component {
           </View>
 
           <View style={[styles.inputContainer]}>
-            <Select
+            <Picker
               style={styles.selectStyle}
-              value={this.state.itemValue}
-              items={this.state.items}
-              placeholder='Select Campaign Type'
-              onSelected={(item, index) => this.setState({itemValue: item})}
-              placeholderTextColor="#8d8d8c"
-            />
+              selectedValue={this.props.campaignType}
+              mode={'dropdown'}
+              onValueChange={value => this.props.campaignUpdate({ prop: 'campaignType', value })}
+            >
+              <Picker.Item label="Fund Raising" value="Fund Raising" />
+              <Picker.Item label="Donation" value="Donation" />
+              <Picker.Item label="Commercial" value="Commercial" />
+            </Picker>
           </View>
           <View style={[styles.btnGrp, {flexDirection: 'row', justifyContent: 'center'}]}>
             <Touchable style={[styles.greenBtn, styles.btnTouchable, {marginHorizontal: 10} ]}
@@ -202,9 +206,9 @@ class CampaignStepTwoScreen extends Component {
 }
 
 const mapStateToProps = (state) => {
-  const { imageUri } = state.campaignForm;
+  const { imageUri, date, time, campaignType, location } = state.campaignForm;
 
-  return { imageUri };
+  return { imageUri, date, time, campaignType, location };
 };
 
 export default connect(mapStateToProps, { campaignUpdate })(CampaignStepTwoScreen);

@@ -12,7 +12,7 @@ class ListItem extends Component {
   }
 
   render() {
-    const { title, description } = this.props.campaign;
+    const { title, description, recycleType, date, time, campaignType, goal, unit, location } = this.props.campaign;
 
     return (
       <TouchableWithoutFeedback onPress={this.onRowPress.bind(this)}>
@@ -22,14 +22,14 @@ class ListItem extends Component {
                 <Text style={[styles.cardTitle, styles.OswaldRegular]}>{title.toUpperCase()}</Text>
                 <View style={[styles.row]}>
                   <Touchable style={[styles.cardTag, styles.yellowTag]}>
-                    <Text style={[styles.cardTagText, styles.OpenSansSemiBold]}>Fund Raising</Text>
+                    <Text style={[styles.cardTagText, styles.OpenSansSemiBold]}>{campaignType}</Text>
                   </Touchable>
                   <Touchable style={[styles.cardTag]}>
-                    <Text style={[styles.cardTagText, styles.OpenSansSemiBold]}>Clothes</Text>
+                    <Text style={[styles.cardTagText, styles.OpenSansSemiBold]}>{recycleType}</Text>
                   </Touchable>
-                  <Touchable style={[styles.cardTag]}>
+                  {/* <Touchable style={[styles.cardTag]}>
                     <Text style={[styles.cardTagText, styles.OpenSansSemiBold]}>Newspaper</Text>
-                  </Touchable>
+                  </Touchable> */}
                 </View>
               </View>
               <View style={[styles.subCard]}>
@@ -44,11 +44,12 @@ class ListItem extends Component {
                   </View>
                   <View style={[styles.row, {marginVertical: 8}]}>
                     <Image source={require('../../../assets/images/locationpin.png')}/>
-                    <Text style={[styles.cardText]}>Block 47A, Link Building, Bendemeer Road</Text>
+                    <Text style={[styles.cardText]}>{location}</Text>
                   </View>
                   <View style={[styles.row, {marginVertical: 8}]}>
                     <Image source={require('../../../assets/images/calendar.png')}/>
-                    <Text style={[styles.cardText]}>2 Feb 2018, 9.30 am - 12.30 am</Text>
+                    {/* <Text style={[styles.cardText]}>2 Feb 2018, 9.30 am - 12.30 am</Text> */}
+                    <Text style={[styles.cardText]}>{date}, {time}</Text>            
                   </View>
                 </View>
 
@@ -70,7 +71,7 @@ class ListItem extends Component {
 
                 <View style={[styles.cardFooter]}>
                   <View style={[styles.li]}>
-                    <Text style={[styles.p]}>5000KG</Text>
+                    <Text style={[styles.p]}>{goal} KG</Text>
                     <Text style={[styles.span, styles.orange]}> Goal</Text>
                   </View>
                   <View style={[styles.li, styles.border]}>

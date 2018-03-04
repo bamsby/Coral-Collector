@@ -5,13 +5,14 @@ import {
   View,
   Image,
   TextInput,
-  ScrollView
+  ScrollView,
+  Picker
 } from 'react-native';
 import { connect } from 'react-redux';
 import Touchable from 'react-native-platform-touchable';
 import { FontAwesome } from '@expo/vector-icons';
 import { Actions } from 'react-native-router-flux';
-import { Select } from 'teaset';
+// import { Select } from 'teaset';
 
 import styles from './style';
 import GreenMenuHeader from '../../partials/GreenHeader/index';
@@ -40,7 +41,9 @@ class CampaignStepOneScreen extends Component {
 
   changeQty(qty){
     this.setState({activeQty: qty})
+    // this.props.campaignUpdate({prop: 'unit', qty});
   }
+
   render() {
     return (
       <ScrollView style={styles.container}>
@@ -79,23 +82,41 @@ class CampaignStepOneScreen extends Component {
           </View>
 
           {/* select picker */}
-          <View style={[styles.inputContainer]}>
+          {/* <View style={[styles.inputContainer]}>
             <Select
               style={styles.selectStyle}
               value={this.state.itemValue}
               items={this.state.items}
               placeholder='Type of Recyclables'
-              onSelected={(item, index) => this.setState({itemValue: item})}
+              // onSelected={(item, index) => this.setState({itemValue: item})}
+              selectedValue={this.props.recycleType}
+              onValueChange={value => this.props.campaignUpdate({ prop: 'recycleType', value })}
               placeholderTextColor="#9c9c9c"
             />
+          </View> */}
+          <View style={[styles.inputContainer]}>
+            <Picker
+              style={styles.selectStyle}
+              selectedValue={this.props.recycleType}
+              mode={'dropdown'}
+              onValueChange={value => this.props.campaignUpdate({ prop: 'recycleType', value })}
+            >
+              <Picker.Item label="Clothes" value="Clothes" />
+              <Picker.Item label="Bottles" value="Bottles" />
+              <Picker.Item label="Books" value="Books" />
+              <Picker.Item label="Uniform" value="Uniform" />
+              <Picker.Item label="Electronics" value="Electronics" />
+              <Picker.Item label="Others" value="Others" />
+            </Picker>
           </View>
           <View style={[styles.inputContainer]}>
             <TextInput
-              onChangeText={(text) => this.setState({ campaignDetails: text })}
+              // onChangeText={(text) => this.setState({ campaignDetails: text })}
               style={[styles.inputStyle]}
               placeholder="Your Goal (Eg. 5000 Kg of materials)"
               placeholderTextColor='#9c9c9c'
               underlineColorAndroid='transparent'
+              onChangeText={value => this.props.campaignUpdate({ prop: 'goal', value })}              
             />
           </View>
           <View style={{flexDirection: 'row'}}>
@@ -123,9 +144,9 @@ class CampaignStepOneScreen extends Component {
 }
 
 const mapStateToProps = (state) => {
-  const { title, description } = state.campaignForm;
+  const { title, description, recycleType, goal, unit } = state.campaignForm;
 
-  return { title, description };
+  return { title, description, recycleType, goal, unit };
 };
 
 export default connect(mapStateToProps, { campaignUpdate })(CampaignStepOneScreen);

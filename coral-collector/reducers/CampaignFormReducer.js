@@ -7,7 +7,14 @@ import {
 const INITIAL_STATE = {
   title: '',
   description: '',
-  imageUri: null
+  imageUri: null,
+  recycleType: '',
+  date: '',
+  time: '',
+  campaignType: '',
+  goal: '',
+  unit: '',
+  location: '',
 };
 
 export default (state = INITIAL_STATE, action) => {

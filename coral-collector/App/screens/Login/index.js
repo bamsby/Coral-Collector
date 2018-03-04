@@ -1,9 +1,3 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- * @flow
- */
-
 import React, { Component } from 'react';
 import {
   Text,
@@ -23,12 +17,16 @@ import { Spinner } from '../../common';
 
 
 class LoginScreen extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      //uname: 'Username / email',
-      //pswd: 'Password'
-    };
+  // constructor(props) {
+  //   super(props);
+  //   this.state = {
+  //     //uname: 'Username / email',
+  //     //pswd: 'Password'
+  //   };
+  // }
+  componentDidMount() {
+    this.props.emailChanged("");
+    this.props.passwordChanged("");
   }
 
   onEmailChange(text) {
@@ -66,6 +64,7 @@ class LoginScreen extends Component {
             <View style={[styles.inputField]}>
               <TextInput
                 placeholder="Email"
+                value={this.props.email}
                 onChangeText={this.onEmailChange.bind(this)}
                 style={[styles.inputStyle]}
               />
@@ -74,6 +73,7 @@ class LoginScreen extends Component {
             <View style={[styles.inputField]}>
               <TextInput
                 placeholder="Password"
+                value={this.props.password}
                 onChangeText={this.onPasswordChange.bind(this)}
                 style={[styles.inputStyle]}
                 secureTextEntry
