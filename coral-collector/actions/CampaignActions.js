@@ -1,3 +1,4 @@
+import React, { Component } from 'react';
 import firebase from 'firebase';
 import { Actions } from 'react-native-router-flux';
 import {
@@ -6,32 +7,57 @@ import {
   CAMPAIGN_FETCH_SUCCESS,
   CAMPAIGN_SAVE_SUCCESS
 } from './types';
+import { RNS3 } from 'react-native-aws3';
 
 export const campaignUpdate = ({ prop, value }) => {
+  
   return {
     type: CAMPAIGN_UPDATE,
     payload: { prop, value }
   };
 };
 
-export const campaignCreate = ({ title, description }) => {
-  const { currentUser } = firebase.auth();
+export const campaignCreate = ({ title, description, imageUri }) => {
+  // const { currentUser } = firebase.auth();
+
+  const file = {
+    uri: imageUri,
+    name: title + "Cover.png",
+    type: "image/png"
+  }
+
+  var replaced = title.replace(/ /g, '+')
+  console.log("title: " + replaced);
+
+  const options = {
+    keyPrefix: "campaigns/",
+    bucket: "coral-community",
+    region: "ap-southeast-1",
+    accessKey: "AKIAJ2XBHT5AGKRG6XQA",
+    secretKey: "rARFVeQ4OVppXcs4xdbrCn2L5WnjRi43421Gt0hb",
+    successActionStatus: 201
+  }
+  
+  RNS3.put(file, options).then(response => {
+    if (response.status !== 201)
+      throw new Error("Failed to upload image to S3");
+    console.log(response.body);
+  });
 
   return (dispatch) => {
-    firebase.database().ref(`/users/${currentUser.uid}/campaigns`)
+    firebase.database().ref(`/users/campaigns`)
       .push({ title, description })
       .then(() => {
         dispatch({ type: CAMPAIGN_CREATE });
-        Actions.campaignList({ type: 'reset' });
       });
   };
 };
 
 export const campaignFetch = () => {
-  const { currentUser } = firebase.auth();
+  // const { currentUser } = firebase.auth();
 
   return (dispatch) => {
-    firebase.database().ref(`/users/${currentUser.uid}/campaigns`)
+    firebase.database().ref(`/users/campaigns`)
       .on('value', snapshot => {
         dispatch({ type: CAMPAIGN_FETCH_SUCCESS, payload: snapshot.val() });
       });
@@ -39,26 +65,26 @@ export const campaignFetch = () => {
 };
 
 export const campaignSave = ({ title, description, uid }) => {
-  const { currentUser } = firebase.auth();
+  // const { currentUser } = firebase.auth();
 
   return (dispatch) => {
-    firebase.database().ref(`/users/${currentUser.uid}/campaigns/${uid}`)
+    firebase.database().ref(`/users/campaigns/${uid}`)
       .set({ title, description })
       .then(() => {
         dispatch({ type: CAMPAIGN_SAVE_SUCCESS });
-        Actions.campaignList({ type: 'reset' });
+        // Actions.campaignList({ type: 'reset' });
       });
   };
 };
 
 export const campaignDelete = ({ uid }) => {
-  const { currentUser } = firebase.auth();
+  // const { currentUser } = firebase.auth();
 
   return () => {
-    firebase.database().ref(`/users/${currentUser.uid}/campaigns/${uid}`)
+    firebase.database().ref(`/users/campaigns/${uid}`)
       .remove()
       .then(() => {
-        Actions.campaignList({ type: 'reset' });
+        // Actions.campaignList({ type: 'reset' });
       });
   };
 };

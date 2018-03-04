@@ -3,7 +3,7 @@ import { StyleSheet, Dimensions } from 'react-native';
 export default StyleSheet.create({
   header: {
     backgroundColor: '#3dbb69',
-    paddingTop: 16,
+    paddingTop: 20,
     paddingBottom: 12,
     position: 'relative'
   },
@@ -15,8 +15,9 @@ export default StyleSheet.create({
   menuIconTouchable: {
     position: 'absolute',
     left: 11,
-    bottom: 12,
-    zIndex: 9
+    bottom: 10,
+    zIndex: 9,
+    padding: 5
   },
   menuIconTouchableRight: {
     position: 'absolute',

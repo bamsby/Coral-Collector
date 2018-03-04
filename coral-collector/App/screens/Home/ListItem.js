@@ -33,7 +33,10 @@ class ListItem extends Component {
                 </View>
               </View>
               <View style={[styles.subCard]}>
-                <View style={[styles.galleryContainer]}></View>
+                <View style={[styles.galleryContainer]}>
+                  <Image source={{uri: 'https://s3-ap-southeast-1.amazonaws.com/coral-community/campaigns/' + title.replace(/ /g, '+') + 'Cover.png'}}
+                         style={{height: 200}} />                                 
+                </View>
                 <View style={[styles.cardTextContainer]}>
                   <View style={[styles.row, {marginVertical: 8}]}>
                     <Image source={require('../../../assets/images/RC.png')}/>        

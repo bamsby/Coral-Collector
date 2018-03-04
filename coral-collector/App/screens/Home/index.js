@@ -14,7 +14,6 @@ import {
 import Touchable from 'react-native-platform-touchable';
 import { FontAwesome } from '@expo/vector-icons';
 import styles from './style';
-import * as Progress from 'react-native-progress';
 import Drawer from 'react-native-drawer'
 import SidebarScreen from '../Sidebar/index'
 import Modal from "react-native-modal";
@@ -270,7 +269,7 @@ class HomeScreen extends Component {
               items={items}
               onSubmitEditing={isEnabled => this.checkIsEnabled(isEnabled)}
               onChipClose={isEnabled => this.checkIsEnabled(isEnabled)}
-              inputPlaceHolder="Select Campaign"
+              inputPlaceHolder="  Select Campaign"
               marginHorizontal={10}
             />
 

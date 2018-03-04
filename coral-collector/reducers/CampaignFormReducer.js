@@ -6,7 +6,8 @@ import {
 
 const INITIAL_STATE = {
   title: '',
-  description: ''
+  description: '',
+  imageUri: null
 };
 
 export default (state = INITIAL_STATE, action) => {

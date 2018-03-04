@@ -1,9 +1,3 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- * @flow
- */
-
 import React, { Component } from 'react';
 import {
   StyleSheet,
@@ -45,9 +39,9 @@ class CampaignStepThreeScreen extends Component {
   }
 
   onButtonPress() {
-    const { title, description } = this.props;
+    const { title, description, imageUri } = this.props;
 
-    this.props.campaignCreate({ title, description });
+    this.props.campaignCreate({ title, description, imageUri });
     Actions.champaignfinalstep();
   }
 
@@ -176,9 +170,9 @@ class CampaignStepThreeScreen extends Component {
 }
 
 const mapStateToProps = (state) => {
-  const { title, description } = state.campaignForm;
+  const { title, description, imageUri } = state.campaignForm;
 
-  return { title, description };
+  return { title, description, imageUri };
 };
 
 export default connect(mapStateToProps, {

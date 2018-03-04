@@ -1,9 +1,3 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- * @flow
- */
-
 import React, { Component } from 'react';
 import {
   StyleSheet,
@@ -13,6 +7,7 @@ import {
   TextInput,
   ScrollView
 } from 'react-native';
+import { connect } from 'react-redux';
 import Touchable from 'react-native-platform-touchable';
 import {FontAwesome} from '@expo/vector-icons';
 import DatePicker from 'react-native-datepicker';
@@ -20,11 +15,13 @@ import {Actions} from 'react-native-router-flux';
 import {Select} from 'teaset';
 import {MapView, ImagePicker} from 'expo';
 import {Marker} from 'react-native-maps';
+import firebase from 'firebase';
 
 import styles from './style';
 import GreenMenuHeader from '../../partials/GreenHeader/index';
+import { campaignUpdate } from '../../../../actions';
 
-export default class CampaignStepOneScreen extends Component {
+class CampaignStepTwoScreen extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -55,13 +52,12 @@ export default class CampaignStepOneScreen extends Component {
   _pickImage = async () => {
     let result = await ImagePicker.launchImageLibraryAsync({
       allowsEditing: true,
-      aspect: [4, 3],
+      aspect: [4, 3]
     });
-
-    console.log(result);
 
     if (!result.cancelled) {
       this.setState({ image: result.uri });
+      this.props.campaignUpdate({ prop: 'imageUri', value: result.uri });
     }
   };
 
@@ -204,3 +200,11 @@ export default class CampaignStepOneScreen extends Component {
     );
   }
 }
+
+const mapStateToProps = (state) => {
+  const { imageUri } = state.campaignForm;
+
+  return { imageUri };
+};
+
+export default connect(mapStateToProps, { campaignUpdate })(CampaignStepTwoScreen);
