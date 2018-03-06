@@ -8,12 +8,12 @@ const INITIAL_STATE = {
   title: '',
   description: '',
   imageUri: null,
-  recycleType: '',
+  recycleType: 'Clothes',
   date: '',
   time: '',
-  campaignType: '',
+  campaignType: 'Fund Raising',
   goal: '',
-  unit: '',
+  unit: 'KG',
   location: '',
 };
 

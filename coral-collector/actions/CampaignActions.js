@@ -46,7 +46,7 @@ export const campaignCreate = ({ title, description, imageUri, recycleType, date
 
   return (dispatch) => {
     firebase.database().ref(`/users/campaigns`)
-      .push({ title, description, recycleType, date, time, campaignType, goal, unit, location })
+      .push().set({ title, description, recycleType, date, time, campaignType, goal, unit, location })
       .then(() => {
         dispatch({ type: CAMPAIGN_CREATE });
       });

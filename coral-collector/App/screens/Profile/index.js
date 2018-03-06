@@ -15,9 +15,9 @@ import {
 } from 'react-native';
 import Touchable from 'react-native-platform-touchable';
 import {FontAwesome} from '@expo/vector-icons';
-import {Actions} from 'react-native-router-flux'
-import Drawer from 'react-native-drawer'
-import SidebarScreen from '../Sidebar/index'
+import {Actions} from 'react-native-router-flux';
+import Drawer from 'react-native-drawer';
+import SidebarScreen from '../Sidebar/index';
 
 import styles from './style'
 
